@@ -71,7 +71,6 @@ export default function Home() {
           <div className="tabs" role="group" aria-label="Filtrar projetos">
             {FILTERS.map(([k, label]) => <button key={k} className="tab" aria-pressed={filter === k} onClick={() => setFilter(k)}>{label}</button>)}
           </div>
-          <Link className="btn btn--outline" to="/projetos">Ver todos <Arrow d="ne" /></Link>
         </div>
         <div className="grid">
           {featured.map((p, i) => <ProjectCard key={p.slug} p={p} index={i} />)}
@@ -82,6 +81,7 @@ export default function Home() {
                 <a className="btn btn--outline" href={site.linkedin} target="_blank" rel="noopener">LinkedIn <Arrow d="ne" /></a></div></div></div>
           )}
         </div>
+        <div className="more"><Link className="btn btn--outline" to="/projetos">Ver todos <Arrow d="ne" /></Link></div>
       </div></section>
 
       <section className="section" id="servicos"><div className="wrap">

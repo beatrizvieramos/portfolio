@@ -340,3 +340,36 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hero__sticker::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:1.5px dashed var(--green);animation:spin 16s linear infinite;pointer-events:none}
 .hero__sticker:hover{scale:1.08}
 @media (prefers-reduced-motion:reduce){.hero__sticker,.hero__sticker::before{animation:none}}
+
+/* ---- mobile: botões empilhados e centralizados, serviços/experiência organizados, sem scroll lateral ---- */
+@media (max-width:760px){
+  html{overflow-x:clip}
+  .hero__actions{flex-direction:column;align-items:center;width:100%}
+  .hero__actions .btn,.cta .btns .btn,.about-cta .btns .btn,.more .btn{width:100%;max-width:340px;justify-content:center}
+  .cta .btns,.about-cta .btns{flex-direction:column;align-items:center}
+  .more{margin-top:40px}
+
+  .svc{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"n name arrow" "d d d";align-items:center;gap:10px 16px;padding:28px 0}
+  .svc:hover{padding:28px 16px}
+  .svc__n{grid-area:n;width:auto}
+  .svc__name{grid-area:name;font-size:26px;line-height:1.12}
+  .svc__arrow{grid-area:arrow;width:44px;height:44px;font-size:18px}
+  .svc__d{grid-area:d;width:auto;order:0;font-size:16px}
+
+  .exp{grid-template-columns:1fr;gap:4px;padding:22px 0}
+  .exp:hover{padding-left:20px;padding-right:20px}
+  .exp span:first-child{color:var(--pink);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .exp .h4{font-size:24px}
+  .exp span:nth-child(3){font-weight:500}
+  .exp span:nth-child(4){color:var(--gray);font-size:15px}
+  .exp:hover span:first-child,.exp:hover span:nth-child(4){color:var(--ink)}
+
+  .fbar{flex-direction:column;align-items:center;gap:12px;text-align:center}
+
+  .about-hero .collage{--k:.5;width:660px;height:740px;transform:scale(var(--k));transform-origin:top left;margin:0 calc(660px*(var(--k) - 1)) calc(740px*(var(--k) - 1)) 0}
+  .words b{font-size:clamp(40px,12vw,64px)}
+}
+@media (max-width:760px){
+  .info3{text-align:center}
+  .info3 .h4{font-size:20px;overflow-wrap:anywhere}
+}
