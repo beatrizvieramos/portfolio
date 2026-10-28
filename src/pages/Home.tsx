@@ -24,7 +24,7 @@ const toolGroups: { name: string; cls: string; tools: [string, React.ReactNode][
 ];
 
 const jobs = [['2024 — Atual', 'Alfama Web', 'UI Designer & Front-end', 'Aracaju / SE'], ['2021 — 2024', 'Agência Acerte', 'Front-end & Web Designer', 'Aracaju / SE'], ['2015', 'Alfama Web', 'Front-end & Web Designer', 'Aracaju / SE']];
-const studies = [['2011 — 2015', 'UNIT', 'Bacharelado em Design Gráfico', 'Aracaju / SE'], ['Cursando', 'EBAC', 'Pós em UX/UI e Produtos Digitais', 'Online'], ['2026', 'EBAC', 'UX Design · UX/UI na Prática', 'Online'], ['2026', 'Samsung Ocean', 'Oficina de Usabilidade', 'Online'], ['2026', 'Clube de UI · DesignBoost', 'DS legíveis por IA · IA, UI e DS', 'Online'], ['2026', 'TERA', 'Imersão Claude para Product Managers', '—'], ['2023', 'Alura', 'UX Research', 'Online']];
+const studies = [['2011 — 2015', 'UNIT', 'Bacharelado em Design Gráfico', 'Aracaju / SE'], ['Cursando', 'EBAC', 'Pós em UX/UI e Produtos Digitais', 'Online'], ['2026', 'EBAC', 'UX Design · UX/UI na Prática', 'Online'], ['2026', 'Samsung Ocean', 'Oficina de Usabilidade', 'Online'], ['2026', 'Clube de UI · DesignBoost', 'DS legíveis por IA · IA, UI e DS', 'Online'], ['2026', 'TERA', 'Imersão Claude para Product Managers', 'Online'], ['2023', 'Alura', 'UX Research', 'Online']];
 const ExpRows = ({ rows }: { rows: string[][] }) => <>{rows.map((r, i) => <div className="exp" key={i}><span>{r[0]}</span><span className="h4">{r[1]}</span><span>{r[2]}</span><span>{r[3]}</span></div>)}</>;
 
 const sp = (left: string, top: string): Vars => ({ left, top });
