@@ -71,9 +71,10 @@ export default function About() {
           <Card kicker="Graduação" title="Design Gráfico — UNIT" body="Universidade Tiradentes, 2011 – 2015." />
           <Card cls="acard--pink" kicker="Pós-graduação" title="UX/UI e Produtos Digitais — EBAC" body="Em andamento." />
           <Card kicker="Idiomas" title="Português · Inglês · Espanhol" body="Português nativo; inglês e espanhol intermediários." />
-        </div><div className="cards cards--2 reveal" style={{ marginTop: 16 }}>
+        </div><div className="cards cards--3 reveal" style={{ marginTop: 16 }}>
           <Card cls="acard--white" kicker="Certificações · UX e Product Design" title="UX Design, UX/UI na Prática, Oficina de Usabilidade, UX Research" body="EBAC, Samsung Ocean e Alura." />
           <Card cls="acard--white" kicker="Certificações · Design Systems e IA" title="DS legíveis por IA · IA, UI e Design System" body="Clube de UI e DesignBoost." />
+          <Card cls="acard--white" kicker="Certificações · IA e Produto" title="Imersão Claude para Product Managers" body="TERA, 2026." />
         </div></section>
 
         <section><SecHead label="Minha marca" /><div className="brandrow">
