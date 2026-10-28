@@ -27,7 +27,7 @@ export default function About() {
     <main>
       <section className="about-hero" style={{ paddingTop: 140 }}>
         <div><span className="label g">↳  Sobre mim</span><h1 className="h1">Oi, eu sou a <span className="g">Beatriz.</span></h1>
-          <p className="intro">Product Designer de Aracaju, Sergipe. Junto interface, design systems e front-end para criar produtos digitais claros, responsivos e centrados nas pessoas — e sigo curiosa para aprender, testar e melhorar tudo o que faço.</p>
+          <p className="intro">Product Designer de Aracaju, Sergipe. Junto interface, design systems e front-end para criar produtos digitais claros, responsivos e centrados nas pessoas, e sigo curiosa para aprender, testar e melhorar tudo o que faço.</p>
           <div className="facts">
             <span className="fact" style={{ background: 'var(--green)', color: '#fff' }}>Aracaju · SE</span><span className="fact" style={{ background: 'var(--ink)', color: '#fff' }}>Product Designer</span>
             <span className="fact" style={{ background: 'var(--pink)' }}>Webdesigner</span><span className="fact" style={{ background: 'var(--mist)' }}>Front-end</span><span className="fact" style={{ background: 'var(--mist)' }}>IA aplicada ao design</span></div></div>
