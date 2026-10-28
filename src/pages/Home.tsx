@@ -47,7 +47,7 @@ function Hero() {
       <div className="hero__sticker label"><span>{'Desde\n2015'}</span></div>
       <Spark c="green" s={56} cls="spin" style={sp('7.5%', '56%')} /><Spark c="pink" s={44} cls="spin-r" style={sp('29%', '15%')} />
       <Spark c="ink" s={28} cls="spin" style={sp('70%', '68%')} /><Spark c="pink" s={40} cls="spin-r" style={sp('74%', '44%')} /><Spark c="green" s={34} cls="spin" style={sp('20%', '71%')} />
-      <div className="hero__intro"><div className="label">↳  UI Designer · Product Designer · Webdesigner &amp; Front-end</div><p>Crio interfaces claras, textos que guiam e código que funciona — do conceito à entrega.</p></div>
+      <div className="hero__intro"><div className="label">↳  UI Designer · Product Designer · Webdesigner &amp; Front-end</div><p>Crio interfaces claras, textos que guiam e código que funciona, do conceito à entrega.</p></div>
       <div className="hero__actions"><a className="btn btn--dark" href="#projetos">Ver projetos <Arrow d="down" /></a><a className="btn btn--outline" href={asset('curriculo-beatriz.pdf')} download>Baixar currículo</a></div>
     </section>
   );
@@ -71,6 +71,7 @@ export default function Home() {
           <div className="tabs" role="group" aria-label="Filtrar projetos">
             {FILTERS.map(([k, label]) => <button key={k} className="tab" aria-pressed={filter === k} onClick={() => setFilter(k)}>{label}</button>)}
           </div>
+          <Link className="btn btn--outline only-desktop" to="/projetos">Ver todos <Arrow d="ne" /></Link>
         </div>
         <div className="grid">
           {featured.map((p, i) => <ProjectCard key={p.slug} p={p} index={i} />)}
@@ -81,7 +82,7 @@ export default function Home() {
                 <a className="btn btn--outline" href={site.linkedin} target="_blank" rel="noopener">LinkedIn <Arrow d="ne" /></a></div></div></div>
           )}
         </div>
-        <div className="more"><Link className="btn btn--outline" to="/projetos">Ver todos <Arrow d="ne" /></Link></div>
+        <div className="more only-mobile"><Link className="btn btn--outline" to="/projetos">Ver todos <Arrow d="ne" /></Link></div>
       </div></section>
 
       <section className="section" id="servicos"><div className="wrap">

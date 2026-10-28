@@ -382,3 +382,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .nav__logo{width:128px;height:36px;border-radius:18px}
 }
 @media (max-width:760px){.hero{overflow-x:clip}}
+
+/* ---- Ver todos: topo no desktop, embaixo dos cards no mobile; interesses; botões do banner ---- */
+.only-mobile{display:none}
+.interest{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.interest:hover{transform:translateY(-3px) rotate(-1.5deg)}
+.reveal.in .interest{animation:pop .5s calc(var(--n,0)*70ms) cubic-bezier(.2,.9,.3,1.2) both}
+@media (max-width:760px){
+  .only-desktop{display:none}
+  .more.only-mobile{display:flex}
+  .hero__actions .btn{padding:20px 28px;font-size:18px;min-height:68px}
+  .interests{gap:10px}
+  .interest{padding:13px 20px;font-size:17px;line-height:1.2;font-weight:600}
+}

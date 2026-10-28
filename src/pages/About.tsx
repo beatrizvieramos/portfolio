@@ -60,7 +60,7 @@ export default function About() {
         </div></section>
 
         <section><SecHead label="Interesses" /><div className="interests reveal">
-          {interests.map(([t, c]) => <span className="interest" key={t} style={{ background: `var(--${c})`, color: c === 'ink' || c === 'green' ? '#fff' : undefined }}>{t}</span>)}
+          {interests.map(([t, c], i) => <span className="interest" key={t} style={{ '--n': i, background: `var(--${c})`, color: c === 'ink' || c === 'green' ? '#fff' : undefined } as Vars}>{t}</span>)}
         </div></section>
 
         <section><SecHead label="Como eu trabalho" /><div className="skills reveal">
