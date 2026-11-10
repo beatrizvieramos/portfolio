@@ -3,12 +3,18 @@
 // Para publicar um site no ar em um projeto: preencha `live` (o card passa a abrir o link) e a página interna deixa de ser usada.
 
 export interface Shot { cap: string; files: string[] }
-export interface CaseStudy { lead: string; paras: string[]; role?: string[]; tools?: string[]; desktop?: Shot[]; mobile?: string[]; mobileCap?: string }
+export interface CaseStudy { lead: string; paras: string[]; role?: string[]; tools?: string[]; desktop?: Shot[]; mobile?: string[]; mobileCap?: string; video?: { src: string; poster: string } }
 export interface Project { slug: string; title: string; cat: string; tags: string[]; scene: { a: string; b?: string }; bg: string; dark?: boolean; live?: string; case?: CaseStudy }
 
 const S = (a: string, b?: string) => ({ a, b });
 
 export const projects: Project[] = [
+  { slug: 'genshin-impact', title: 'Genshin Impact · Redesign', cat: 'Website', tags: ['UI Design', 'Webdesigner', 'Design System'], scene: S('genshin-impact-a', 'genshin-impact-b'), bg: '#141842', dark: true,
+    case: { lead: 'Redesign conceitual e independente do site da HoYoverse para Genshin Impact em português, sem vínculo oficial com a empresa.',
+      paras: ['A Home reúne o hero com troca de personagem (Venti, Klee, Nahida, Eula e Raiden) em Smart Animate, a estrelinha prata piscando, vídeo em tela cheia e as seções Notícias em bento, Mundo, Explorar, Download e rodapé. A paleta "twilight" parte do azul-tinta #0A0C22, com dourado pérola e pastéis elementais. As referências foram degenesis.com e inkgames.com.', 'O arquivo entrega Desktop 1600, Tablet e Mobile com todas as telas, overlays e menu aberto, além de design system com 6 coleções, motion, apresentação para o Behance (21 slides), carrossel para o LinkedIn e vídeos de demonstração.'],
+      role: ['UI Design', 'Webdesigner', 'Design System', 'Product Design'], tools: ['Figma'],
+      video: { src: 'video/genshin-demo.mp4', poster: 'video/genshin-demo-poster.jpg' },
+      desktop: [{ cap: 'Home · Desktop', files: ['gi-d1', 'gi-d2', 'gi-d3'] }], mobile: ['gi-m1', 'gi-m2', 'gi-m3'] } },
   { slug: 'alfama-web', title: 'Alfama Web', cat: 'Website', tags: ['UI Design', 'Front-end'], scene: S('alfama-web-a'), bg: '#0D1018', dark: true,
     case: { lead: 'Site institucional da Alfama Web, a agência de soluções digitais, redesenhado em Figma como sistema completo de páginas e componentes.',
       paras: ['O projeto cobre Home, Sobre, Soluções (com páginas para Websites, Simulador Imobiliário, Landing Pages, Web App, Intranets e Integração CRM), Projetos, Blog, artigo, Contato e Política de Privacidade, nas versões Desktop, Tablet e Mobile.', 'Inclui biblioteca de componentes, variáveis de cor, espaçamento e raio, estilos de texto (Geist, Inter e Geist Mono), especificação de motion e documento de handoff para desenvolvimento.'],

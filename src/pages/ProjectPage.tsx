@@ -22,7 +22,11 @@ export default function ProjectPage() {
     <main>
       <section className="case-hero"><span className="label">Projeto · {p.cat}</span><h1 className="h1">{p.title}</h1></section>
       <section className="case-meta"><div><span className="label">Categoria</span><span className="h4">{p.cat}</span></div><div><span className="label">Serviços</span><span className="h4">{p.tags.join(' · ')}</span></div></section>
-      <section className="case-scene"><Scene p={p} /></section>
+      <section className="case-scene">
+        {c.video
+          ? <div className="case-video"><video src={asset(c.video.src)} poster={asset(c.video.poster)} autoPlay muted loop playsInline preload="metadata" aria-label={`Demonstração de rolagem da Home — ${p.title}`} /></div>
+          : <Scene p={p} />}
+      </section>
       <section className="case-overview"><div><div className="h3"><span className="g">/</span>Visão geral</div></div>
         <div className="body"><p className="h4">{c.lead}</p>{c.paras.map(t => <p key={t}>{t}</p>)}<ChipsBlock label="Meu papel" arr={c.role} /><ChipsBlock label="Ferramentas" arr={c.tools} /></div></section>
       <section className="shots"><div className="sec-head" style={{ marginBottom: 0 }}><div className="h3"><span>/</span>Telas</div></div>

@@ -395,3 +395,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .interests{gap:10px}
   .interest{padding:13px 20px;font-size:17px;line-height:1.2;font-weight:600}
 }
+
+/* ---- vídeo de apresentação do case ---- */
+.case-video{border-radius:28px;overflow:hidden;background:#0A0C22;aspect-ratio:16/9;box-shadow:0 30px 60px rgba(10,9,9,.18)}
+.case-video video{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:760px){.case-video{border-radius:20px}}
