@@ -13,7 +13,7 @@ export default function Projects() {
   const list = projects.filter(p => filter === 'all' || groupOf(p) === filter);
   return (
     <main>
-      <section className="section" style={{ paddingTop: 140 }}><div className="wrap">
+      <section className="section section--top"><div className="wrap">
         <SecTitle ghost="PORTFÓLIO" title="Todos os projetos" />
         <div className="filters">
           <div className="tabs" role="group" aria-label="Filtrar projetos">

@@ -25,7 +25,7 @@ export default function About() {
   useDocumentTitle('Sobre mim | Beatriz Vieira Ramos', 'Conheça Beatriz Vieira Ramos: história, foco profissional, interesses, marca e o que ela faz fora das telas.');
   return (
     <main>
-      <section className="about-hero" style={{ paddingTop: 140 }}>
+      <section className="about-hero">
         <div><span className="label g">↳  Sobre mim</span><h1 className="h1">Oi, eu sou a <span className="g">Beatriz.</span></h1>
           <p className="intro">Product Designer de Aracaju, Sergipe. Junto interface, design systems e front-end para criar produtos digitais claros, responsivos e centrados nas pessoas, e sigo curiosa para aprender, testar e melhorar tudo o que faço.</p>
           <div className="facts">

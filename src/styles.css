@@ -400,3 +400,38 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .case-video{border-radius:28px;overflow:hidden;background:#0A0C22;aspect-ratio:16/9;box-shadow:0 30px 60px rgba(10,9,9,.18)}
 .case-video video{display:block;width:100%;height:100%;object-fit:cover}
 @media (max-width:760px){.case-video{border-radius:20px}}
+
+/* ---- mobile: espaçamentos reduzidos ---- */
+@media (max-width:760px){
+  .section{padding:64px 0}
+  .sec-title{height:112px;margin-bottom:8px}
+  .sec-title h2{top:42px}
+  .sec-head{margin-bottom:24px}
+  .filters{margin-bottom:28px}
+  .grid{gap:40px 0}
+  .band{padding:20px 0;margin:8px 0}
+  .dark-card{padding:48px 20px;margin:8px}
+  .exp-gap{height:40px}
+  .svc{padding:22px 0}
+  .exp{padding:18px 0}
+  .more{margin-top:32px}
+  .cta{padding:72px 0 56px}
+  .cta .big{margin:20px 0 28px}
+  .info3{margin-top:44px;padding-top:28px;gap:24px}
+  .footer{padding:48px 20px 28px;margin:8px}
+  .footer__logo{margin-bottom:28px}
+  .fgrid{gap:28px}
+  .about-hero{padding:96px var(--pad) 0;gap:24px}
+  .about-hero h1{margin:20px 0}
+  .about-hero .intro{font-size:18px;margin-bottom:20px}
+  .about-body{gap:56px;padding-bottom:56px}
+  .about-cta{padding:48px 24px}
+  .case-hero{padding:32px var(--pad) 16px}
+  .case-meta{gap:20px;padding:16px var(--pad)}
+  .case-scene{padding:16px var(--pad)}
+  .case-overview{padding:48px var(--pad);gap:24px}
+  .shots{padding-bottom:56px;gap:32px}
+  .case-nav{padding-bottom:56px}
+}
+@media (min-width:761px){.about-hero{padding-top:140px}.section--top{padding-top:140px}}
+@media (max-width:760px){.section--top{padding-top:104px}}
