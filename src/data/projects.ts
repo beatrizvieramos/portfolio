@@ -13,7 +13,6 @@ export const projects: Project[] = [
     case: { lead: 'Redesign conceitual e independente do site da HoYoverse para Genshin Impact em português, sem vínculo oficial com a empresa.',
       paras: ['A Home reúne o hero com troca de personagem (Venti, Klee, Nahida, Eula e Raiden) em Smart Animate, a estrelinha prata piscando, vídeo em tela cheia e as seções Notícias em bento, Mundo, Explorar, Download e rodapé. A paleta "twilight" parte do azul-tinta #0A0C22, com dourado pérola e pastéis elementais. As referências foram degenesis.com e inkgames.com.', 'O arquivo entrega Desktop 1600, Tablet e Mobile com todas as telas, overlays e menu aberto, além de design system com 6 coleções, motion, apresentação para o Behance (21 slides), carrossel para o LinkedIn e vídeos de demonstração.'],
       role: ['UI Design', 'Webdesigner', 'Design System', 'Product Design'], tools: ['Figma'],
-      video: { src: 'video/genshin-demo.mp4', poster: 'video/genshin-demo-poster.jpg' },
       desktop: [{ cap: 'Home · Desktop', files: ['gi-d1', 'gi-d2', 'gi-d3'] }], mobile: ['gi-m1', 'gi-m2', 'gi-m3'] } },
   { slug: 'alfama-web', title: 'Alfama Web', cat: 'Website', tags: ['UI Design', 'Front-end'], scene: S('alfama-web-a'), bg: '#0D1018', dark: true,
     case: { lead: 'Site institucional da Alfama Web, a agência de soluções digitais, redesenhado em Figma como sistema completo de páginas e componentes.',
