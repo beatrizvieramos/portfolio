@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { projects, site } from '../data/projects';
 import { ProjectCard, groupOf } from '../components/ProjectCard';
@@ -32,19 +32,45 @@ const Letters = ({ text }: { text: string }) => <>{[...text].map((c, i) => <span
 
 const sp = (left: string, top: string): Vars => ({ left, top });
 
+const canScrub = typeof matchMedia !== 'undefined' && matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function Hero() {
   const [pose, setPose] = useState<Pose>('center');
+  const [scrub, setScrub] = useState(canScrub);
+  const video = useRef<HTMLVideoElement>(null);
+  const target = useRef(0.5);
+  const cur = useRef(0.5);
+
+  // vídeo da boneca: a posição do mouse controla o tempo do vídeo (esquerda → direita)
+  useEffect(() => {
+    const v = video.current;
+    if (!scrub || !v) return;
+    let raf = 0;
+    const tick = () => {
+      cur.current += (target.current - cur.current) * 0.14;
+      const d = v.duration;
+      if (d && !v.seeking && Math.abs(v.currentTime - cur.current * d) > 0.015) v.currentTime = cur.current * d;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [scrub]);
+
   const onMove = (e: React.MouseEvent<HTMLElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
     const dx = (e.clientX - r.left) / r.width - 0.5, dy = (e.clientY - r.top) / r.height - 0.5;
-    setPose(dy > 0.22 ? 'down' : dx < -0.14 ? 'left' : dx > 0.14 ? 'right' : 'center');
+    if (scrub) target.current = Math.min(1, Math.max(0, 0.5 + dx * 1.5));
+    else setPose(dy > 0.22 ? 'down' : dx < -0.14 ? 'left' : dx > 0.14 ? 'right' : 'center');
   };
+  const onLeave = () => { target.current = 0.5; setPose('center'); };
   return (
-    <section className="hero" aria-label="Apresentação" onMouseMove={onMove} onMouseLeave={() => setPose('center')}>
+    <section className="hero" aria-label="Apresentação" onMouseMove={onMove} onMouseLeave={onLeave}>
       <h1 className="sr">Beatriz Vieira Ramos — Product Designer, Webdesigner e Front-end</h1>
       <div className="name name--outline" aria-hidden="true"><Letters text="BEATRIZ" /></div>
       <div className="hero__arch" aria-hidden="true">
-        {(['center', 'left', 'right', 'down'] as Pose[]).map(p => <img key={p} src={asset(`img/avatar/${p}.jpg`)} className={pose === p ? 'on' : ''} alt="" />)}
+        {scrub
+          ? <video ref={video} src={asset('video/hero-doll-sweep.mp4')} poster={asset('img/avatar/center.jpg')} muted playsInline preload="auto" onError={() => setScrub(false)} onLoadedMetadata={e => { e.currentTarget.currentTime = e.currentTarget.duration * 0.5; }} />
+          : (['center', 'left', 'right', 'down'] as Pose[]).map(p => <img key={p} src={asset(`img/avatar/${p}.jpg`)} className={pose === p ? 'on' : ''} alt="" />)}
       </div>
       <div className="name name--solid" aria-hidden="true"><Letters text="VIEIRA" /></div>
       <div className="hero__sticker label"><span>{'Desde\n2015'}</span></div>
