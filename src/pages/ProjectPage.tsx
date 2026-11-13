@@ -27,7 +27,8 @@ export default function ProjectPage() {
           ? <div className="case-video"><video src={asset(c.video.src)} poster={asset(c.video.poster)} autoPlay muted loop playsInline preload="metadata" aria-label={`Demonstração de rolagem da Home — ${p.title}`} /></div>
           : <Scene p={p} />}
       </section>
-      <section className="case-overview"><div><div className="h3"><span className="g">/</span>Visão geral</div></div>
+      <section className="case-overview"><div><div className="h3"><span className="g">/</span>Visão geral</div>
+          {c.behance && <a className="btn btn--dark case-behance" href={c.behance} target="_blank" rel="noopener">Ver apresentação completa no Behance <Arrow d="ne" /></a>}</div>
         <div className="body"><p className="h4">{c.lead}</p>{c.paras.map(t => <p key={t}>{t}</p>)}<ChipsBlock label="Meu papel" arr={c.role} /><ChipsBlock label="Ferramentas" arr={c.tools} /></div></section>
       <section className="shots"><div className="sec-head" style={{ marginBottom: 0 }}><div className="h3"><span>/</span>Telas</div></div>
         {(c.desktop || []).map(g => (

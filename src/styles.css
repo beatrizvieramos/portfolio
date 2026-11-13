@@ -435,3 +435,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 @media (min-width:761px){.about-hero{padding-top:140px}.section--top{padding-top:140px}}
 @media (max-width:760px){.section--top{padding-top:104px}}
+
+/* ---- botão do Behance na visão geral do case ---- */
+.case-behance{margin-top:24px}
+@media (max-width:760px){.case-behance{width:100%;justify-content:center;margin-top:16px}}

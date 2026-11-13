@@ -3,19 +3,19 @@
 // Para publicar um site no ar em um projeto: preencha `live` (o card passa a abrir o link) e a página interna deixa de ser usada.
 
 export interface Shot { cap: string; files: string[] }
-export interface CaseStudy { lead: string; paras: string[]; role?: string[]; tools?: string[]; desktop?: Shot[]; mobile?: string[]; mobileCap?: string; video?: { src: string; poster: string } }
+export interface CaseStudy { lead: string; paras: string[]; role?: string[]; tools?: string[]; desktop?: Shot[]; mobile?: string[]; mobileCap?: string; video?: { src: string; poster: string }; behance?: string }
 export interface Project { slug: string; title: string; cat: string; tags: string[]; scene: { a: string; b?: string }; bg: string; dark?: boolean; live?: string; case?: CaseStudy }
 
 const S = (a: string, b?: string) => ({ a, b });
 
 export const projects: Project[] = [
   { slug: 'genshin-impact', title: 'Genshin Impact · Redesign', cat: 'Website', tags: ['UI Design', 'Webdesigner', 'Design System'], scene: S('genshin-impact-a', 'genshin-impact-b'), bg: '#141842', dark: true,
-    case: { lead: 'Estudo de redesign do site oficial do Genshin Impact: uma experiência mais clara na hierarquia, mais coerente na arquitetura da informação e mais agradável de usar em qualquer tela. Conceito independente, sem afiliação oficial.',
+    case: { behance: 'https://www.behance.net/gallery/258310281/Redesign-Genshin-Impact-UXUI-Design-System-Motion', lead: 'Estudo de redesign do site oficial do Genshin Impact: uma experiência mais clara na hierarquia, mais coerente na arquitetura da informação e mais agradável de usar em qualquer tela. Conceito independente, sem afiliação oficial.',
       paras: ['O trabalho partiu de um olhar crítico sobre o site atual: seções com o mesmo peso visual, conteúdos relacionados espalhados e pouca imersão para um mundo de fantasia. Cada ponto virou uma decisão de design: escala tipográfica editorial, numerais de seção, hero cinematográfico com troca de personagem, sitemap em quatro áreas e menu com dropdown em Informações.', 'O resultado é uma interface calma, mágica e editorial, com a paleta "twilight" (azul-tinta, dourado pérola e pastéis elementais), design system com variáveis, estilos e componentes, e motion nos detalhes, como a estrelinha prata piscando. Foi pensada para desktop, tablet e mobile, com alvos de toque de 44 px e menu em tela cheia.'],
       role: ['UI Design', 'Webdesigner', 'Design System', 'Product Design'], tools: ['Figma'],
       desktop: [{ cap: 'Home · Desktop', files: ['gi-d1', 'gi-d2', 'gi-d3'] }], mobile: ['gi-m1', 'gi-m2', 'gi-m3'] } },
   { slug: 'nyxie-dead-air', title: 'Nyxie: Dead Air · Landing Page', cat: 'Landing page', tags: ['UI Design', 'Webdesigner', 'Motion'], scene: S('nyxie-dead-air-a', 'nyxie-dead-air-b'), bg: '#1F1028', dark: true,
-    case: { lead: 'Landing page conceitual para um jogo fictício de ritmo e ação (RPG roguelike) em estética gótico-kawaii, "Nyxie: Dead Air", pensada para apresentar o mundo, a personagem e a jogabilidade em uma única página.',
+    case: { behance: 'https://www.behance.net/gallery/258427817/Nyxie-Landing-Page-de-Jogo-UIUX', lead: 'Landing page conceitual para um jogo fictício de ritmo e ação (RPG roguelike) em estética gótico-kawaii, "Nyxie: Dead Air", pensada para apresentar o mundo, a personagem e a jogabilidade em uma única página.',
       paras: ['A página reúne Hero com arco de vídeo, Featured Video com trailer em modal, História, Personagem com ficha, stats, kit e turntable, Skins com seletor de 10 cores, Poses, Gameplay com HUD, Mundos, Hub, Edições, FAQ em accordion, CTA final e rodapé. Foi desenhada para desktop (1600 px), tablet e mobile, com menu aberto nos breakpoints menores.', 'As interações e o motion ganham espaço: hover em botões e cards, seletor de skins, troca de personagem, corações flutuando e dividers animados. O design system traz variáveis de cor e componentes em Atomic Design. A personagem e os vídeos foram gerados com IA e curados por mim; layout, interações e motion são autorais.'],
       role: ['UI Design', 'Webdesigner', 'Motion', 'Design System'], tools: ['Figma'],
       desktop: [{ cap: 'Landing Page · Desktop', files: ['nx-d1', 'nx-d2', 'nx-d3'] }], mobile: ['nx-m1', 'nx-m2', 'nx-m3'] } },
