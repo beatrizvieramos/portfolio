@@ -439,3 +439,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* ---- botão do Behance na visão geral do case ---- */
 .case-behance{margin-top:24px}
 @media (max-width:760px){.case-behance{width:100%;justify-content:center;margin-top:16px}}
+
+/* ---- nome do hero: letras reagem ao mouse (onda) ---- */
+.name .ch{display:inline-block;transition:transform .4s cubic-bezier(.2,.9,.3,1.35),color .25s ease}
+.name--outline .ch:hover{color:var(--pink);transform:translateY(-18px) rotate(-4deg)}
+.name--solid .ch:hover{color:var(--green);transform:translateY(-18px) rotate(3deg) scale(1.05)}
+.name .ch:hover + .ch{transform:translateY(-7px)}
+@media (hover:none){.name .ch{transition:none}}

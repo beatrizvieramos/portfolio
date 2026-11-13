@@ -27,6 +27,9 @@ const jobs = [['2024 — Atual', 'Alfama Web', 'UI Designer & Front-end', 'Araca
 const studies = [['2011 — 2015', 'UNIT', 'Bacharelado em Design Gráfico', 'Aracaju / SE'], ['Cursando', 'EBAC', 'Pós em UX/UI e Produtos Digitais', 'Online'], ['2026', 'EBAC', 'UX Design · UX/UI na Prática', 'Online'], ['2026', 'Samsung Ocean', 'Oficina de Usabilidade', 'Online'], ['2026', 'Clube de UI · DesignBoost', 'DS legíveis por IA · IA, UI e DS', 'Online'], ['2026', 'TERA', 'Imersão Claude para Product Managers', 'Online'], ['2023', 'Alura', 'UX Research', 'Online']];
 const ExpRows = ({ rows }: { rows: string[][] }) => <>{rows.map((r, i) => <div className="exp" key={i}><span>{r[0]}</span><span className="h4">{r[1]}</span><span>{r[2]}</span><span>{r[3]}</span></div>)}</>;
 
+/** Letras separadas: cada uma reage ao mouse (onda no nome do hero). */
+const Letters = ({ text }: { text: string }) => <>{[...text].map((c, i) => <span className="ch" key={i}>{c}</span>)}</>;
+
 const sp = (left: string, top: string): Vars => ({ left, top });
 
 function Hero() {
@@ -39,11 +42,11 @@ function Hero() {
   return (
     <section className="hero" aria-label="Apresentação" onMouseMove={onMove} onMouseLeave={() => setPose('center')}>
       <h1 className="sr">Beatriz Vieira Ramos — Product Designer, Webdesigner e Front-end</h1>
-      <div className="name name--outline" aria-hidden="true">BEATRIZ</div>
+      <div className="name name--outline" aria-hidden="true"><Letters text="BEATRIZ" /></div>
       <div className="hero__arch" aria-hidden="true">
         {(['center', 'left', 'right', 'down'] as Pose[]).map(p => <img key={p} src={asset(`img/avatar/${p}.jpg`)} className={pose === p ? 'on' : ''} alt="" />)}
       </div>
-      <div className="name name--solid" aria-hidden="true">VIEIRA</div>
+      <div className="name name--solid" aria-hidden="true"><Letters text="VIEIRA" /></div>
       <div className="hero__sticker label"><span>{'Desde\n2015'}</span></div>
       <Spark c="green" s={56} cls="spin" style={sp('7.5%', '56%')} /><Spark c="pink" s={44} cls="spin-r" style={sp('29%', '15%')} />
       <Spark c="ink" s={28} cls="spin" style={sp('70%', '68%')} /><Spark c="pink" s={40} cls="spin-r" style={sp('74%', '44%')} /><Spark c="green" s={34} cls="spin" style={sp('20%', '71%')} />
