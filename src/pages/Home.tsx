@@ -33,27 +33,42 @@ const Letters = ({ text }: { text: string }) => <>{[...text].map((c, i) => <span
 const sp = (left: string, top: string): Vars => ({ left, top });
 
 const canScrub = typeof matchMedia !== 'undefined' && matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DOLL_FRAMES = 64;
+const dollSrc = (i: number) => asset(`img/doll-seq/f${String(i).padStart(3, '0')}.jpg`);
 
 function Hero() {
   const [pose, setPose] = useState<Pose>('center');
   const [scrub, setScrub] = useState(canScrub);
-  const video = useRef<HTMLVideoElement>(null);
+  const canvas = useRef<HTMLCanvasElement>(null);
   const target = useRef(0.5);
   const cur = useRef(0.5);
 
-  // vídeo da boneca: a posição do mouse controla o tempo do vídeo (esquerda → direita)
+  // boneca: sequência de quadros pré-carregados; a posição do mouse escolhe o quadro (esquerda → direita)
   useEffect(() => {
-    const v = video.current;
-    if (!scrub || !v) return;
-    let raf = 0;
+    const cv = canvas.current;
+    if (!scrub || !cv) return;
+    const ctx = cv.getContext('2d');
+    const imgs: HTMLImageElement[] = [];
+    let loaded = 0, last = -1, raf = 0, dead = false;
+    const draw = (i: number) => {
+      const im = imgs[i];
+      if (ctx && im && im.complete && im.naturalWidth) { ctx.drawImage(im, 0, 0, cv.width, cv.height); last = i; }
+    };
+    for (let i = 0; i < DOLL_FRAMES; i++) {
+      const im = new Image();
+      im.onload = () => { loaded++; if (i === Math.round((DOLL_FRAMES - 1) / 2) && last < 0) draw(i); };
+      im.onerror = () => { if (!dead && loaded === 0 && i === 0) setScrub(false); };
+      im.src = dollSrc(i);
+      imgs.push(im);
+    }
     const tick = () => {
-      cur.current += (target.current - cur.current) * 0.14;
-      const d = v.duration;
-      if (d && !v.seeking && Math.abs(v.currentTime - cur.current * d) > 0.015) v.currentTime = cur.current * d;
+      cur.current += (target.current - cur.current) * 0.22;
+      const i = Math.round(cur.current * (DOLL_FRAMES - 1));
+      if (i !== last) draw(i);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => { dead = true; cancelAnimationFrame(raf); };
   }, [scrub]);
 
   const onMove = (e: React.MouseEvent<HTMLElement>) => {
@@ -69,7 +84,7 @@ function Hero() {
       <div className="name name--outline" aria-hidden="true"><Letters text="BEATRIZ" /></div>
       <div className="hero__arch" aria-hidden="true">
         {scrub
-          ? <video ref={video} src={asset('video/hero-doll-sweep.mp4')} poster={asset('img/avatar/center.jpg')} muted playsInline preload="auto" onError={() => setScrub(false)} onLoadedMetadata={e => { e.currentTarget.currentTime = e.currentTarget.duration * 0.5; }} />
+          ? <canvas ref={canvas} width={660} height={900} />
           : (['center', 'left', 'right', 'down'] as Pose[]).map(p => <img key={p} src={asset(`img/avatar/${p}.jpg`)} className={pose === p ? 'on' : ''} alt="" />)}
       </div>
       <div className="name name--solid" aria-hidden="true"><Letters text="VIEIRA" /></div>
