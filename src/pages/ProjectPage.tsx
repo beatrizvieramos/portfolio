@@ -28,7 +28,10 @@ export default function ProjectPage() {
           : <Scene p={p} />}
       </section>
       <section className="case-overview"><div><div className="h3"><span className="g">/</span>Visão geral</div>
-          {c.behance && <a className="btn btn--dark case-behance" href={c.behance} target="_blank" rel="noopener">Ver apresentação completa no Behance <Arrow d="ne" /></a>}</div>
+          {(c.site || c.behance) && <div className="case-links">
+            {c.site && <a className="btn btn--pink case-site" href={c.site} target="_blank" rel="noopener">Ver site no ar <Arrow d="ne" /></a>}
+            {c.behance && <a className="btn btn--dark case-behance" href={c.behance} target="_blank" rel="noopener">Ver apresentação completa no Behance <Arrow d="ne" /></a>}
+          </div>}</div>
         <div className="body"><p className="h4">{c.lead}</p>{c.paras.map(t => <p key={t}>{t}</p>)}<ChipsBlock label="Meu papel" arr={c.role} /><ChipsBlock label="Ferramentas" arr={c.tools} /></div></section>
       <section className="shots"><div className="sec-head" style={{ marginBottom: 0 }}><div className="h3"><span>/</span>Telas</div></div>
         {(c.desktop || []).map(g => (
