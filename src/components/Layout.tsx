@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { site } from '../data/projects';
 import { GradStar, asset, Arrow } from './ui';
@@ -109,6 +109,49 @@ function PageEffects() {
   return null;
 }
 
+
+const CURSOR_STAR = 'M16 2C16.9 10.4 21.6 15.1 30 16C21.6 16.9 16.9 21.6 16 30C15.1 21.6 10.4 16.9 2 16C10.4 15.1 15.1 10.4 16 2Z';
+
+/** Cursor próprio: estrela rosa da marca com borda verde; cresce sobre links e botões. Só com mouse. */
+function StarCursor() {
+  const el = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const d = el.current;
+    if (!d) return;
+    let x = -100, y = -100, tx = -100, ty = -100, raf = 0, on = false;
+    const move = (e: MouseEvent) => {
+      tx = e.clientX; ty = e.clientY;
+      if (!on) { on = true; x = tx; y = ty; document.documentElement.classList.add('has-star'); d.style.opacity = '1'; }
+      const t = e.target as Element | null;
+      d.classList.toggle('big', !!t?.closest?.('a,button,[role="button"],.tab,.card,.nav__burger,summary,label,.ch'));
+    };
+    const leave = () => { d.style.opacity = '0'; };
+    const enter = () => { if (on) d.style.opacity = '1'; };
+    const tick = () => {
+      x += (tx - x) * 0.45; y += (ty - y) * 0.45;
+      d.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%)`;
+      raf = requestAnimationFrame(tick);
+    };
+    addEventListener('mousemove', move, { passive: true });
+    document.addEventListener('mouseleave', leave);
+    document.addEventListener('mouseenter', enter);
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      removeEventListener('mousemove', move);
+      document.removeEventListener('mouseleave', leave);
+      document.removeEventListener('mouseenter', enter);
+      document.documentElement.classList.remove('has-star');
+    };
+  }, []);
+  return (
+    <div ref={el} className="star-cursor" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><path d={CURSOR_STAR} fill="#FFB9DA" stroke="#2B6349" strokeWidth="2" strokeLinejoin="round" /></svg>
+    </div>
+  );
+}
+
 export function Layout() {
   return (
     <>
@@ -116,6 +159,7 @@ export function Layout() {
       <Outlet />
       <Footer />
       <PageEffects />
+      <StarCursor />
     </>
   );
 }
