@@ -471,3 +471,8 @@ html.has-star,html.has-star *{cursor:none!important}
 .footer__logo{width:auto;height:auto;border-radius:0;overflow:visible}
 .footer__logo img{display:block;width:240px;height:auto;object-fit:contain}
 @media (max-width:760px){.nav__logo{width:auto;height:auto;border-radius:0}.nav__logo img{height:26px}.footer__logo img{width:190px}}
+
+/* ---- menu: logo verde sobre selo rosa ---- */
+.nav__logo{background:var(--pink);border-radius:999px;padding:9px 22px;display:flex;align-items:center}
+.nav__logo img{height:30px}
+@media (max-width:760px){.nav__logo{padding:7px 16px}.nav__logo img{height:22px}}
