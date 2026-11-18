@@ -456,3 +456,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .case-links .case-behance{margin-top:0}
 @media (max-width:760px){.case-links{margin-top:16px;align-items:stretch}.case-links .btn{width:100%;justify-content:center;font-size:clamp(12px,3.6vw,15px);padding:14px;white-space:nowrap;gap:6px}}
 @media (max-width:760px){.case-links .btn{line-height:1.2}}
+
+/* ---- cursor: estrela rosa da marca (só com mouse) ---- */
+@media (hover:hover) and (pointer:fine){
+  html,body{cursor:url("/cursor-star.svg") 16 16,auto}
+  a,button,[role="button"],.tab,.card,.nav__burger,.fstar,summary,label{cursor:url("/cursor-star-hover.svg") 22 22,pointer}
+}
