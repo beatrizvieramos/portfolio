@@ -464,3 +464,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes starPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.32)}}
 @media (prefers-reduced-motion:reduce){.star-cursor.big svg{animation:none;transform:scale(1.15)}}
 html.has-star,html.has-star *{cursor:none!important}
+
+/* ---- logo em SVG: menu verde, rodapé rosa (sem pílula) ---- */
+.nav__logo{width:auto;height:auto;border-radius:0;overflow:visible}
+.nav__logo img{display:block;width:auto;height:34px;object-fit:contain}
+.footer__logo{width:auto;height:auto;border-radius:0;overflow:visible}
+.footer__logo img{display:block;width:240px;height:auto;object-fit:contain}
+@media (max-width:760px){.nav__logo{width:auto;height:auto;border-radius:0}.nav__logo img{height:26px}.footer__logo img{width:190px}}

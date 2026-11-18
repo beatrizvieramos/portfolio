@@ -30,7 +30,7 @@ function Nav() {
   const cur = (k: string) => (active === k ? { 'aria-current': 'true' as const } : {});
   return (
     <header className={`nav${open ? ' open' : ''}`} id="top">
-      <Link className="nav__logo" to="/" aria-label="biatriz — início" onClick={close}><img src={asset('img/logo/biatriz-rosa.png')} alt="biatriz" width={176} height={50} /></Link>
+      <Link className="nav__logo" to="/" aria-label="biatriz — início" onClick={close}><img src={asset('img/logo/biatriz-verde.svg')} alt="biatriz" width={139} height={34} /></Link>
       <nav className="nav__links" aria-label="Principal">
         <Link to="/projetos" onClick={close} {...cur('projetos')}>Projetos</Link>
         <Link to={to('servicos')} onClick={close} {...cur('servicos')}>Serviços</Link>
@@ -52,7 +52,7 @@ function Footer() {
     <footer className="footer" id="rodape">
       <i className="fstar spin" style={{ right: '-2%', top: '42%', width: 'min(420px,32vw)' }}><GradStar id="g1" /></i>
       <i className="fstar spin-r" style={{ left: '42%', top: '-6%', width: 120 }}><GradStar id="g2" /></i>
-      <Link className="footer__logo" to="/" aria-label="biatriz"><img src={asset('img/logo/biatriz-verde.png')} alt="biatriz" width={240} height={68} /></Link>
+      <Link className="footer__logo" to="/" aria-label="biatriz"><img src={asset('img/logo/biatriz-rosa.svg')} alt="biatriz" width={240} height={59} /></Link>
       <div className="fgrid">
         <div><span className="label">Páginas</span>
           <Link to="/">Home</Link><Link to="/projetos">Projetos</Link><Link to={to('servicos')}>Serviços</Link><Link to={to('ferramentas')}>Ferramentas</Link><Link to="/sobre">Sobre</Link><Link to={to('experiencia')}>Experiência</Link><Link to={to('contato')}>Contato</Link></div>
