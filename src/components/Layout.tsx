@@ -30,7 +30,7 @@ function Nav() {
   const cur = (k: string) => (active === k ? { 'aria-current': 'true' as const } : {});
   return (
     <header className={`nav${open ? ' open' : ''}`} id="top">
-      <Link className="nav__logo" to="/" aria-label="biatriz — início" onClick={close}><img src={asset('img/logo/biatriz-verde.svg')} alt="biatriz" width={139} height={34} /></Link>
+      <Link className="nav__logo" to="/" aria-label="biatriz — início" onClick={close}><img src={asset('img/logo/biatriz-rosa.svg')} alt="biatriz" width={139} height={34} /></Link>
       <nav className="nav__links" aria-label="Principal">
         <Link to="/projetos" onClick={close} {...cur('projetos')}>Projetos</Link>
         <Link to={to('servicos')} onClick={close} {...cur('servicos')}>Serviços</Link>
