@@ -102,7 +102,8 @@ const FILTERS = [['all', 'Todos'], ['sites', 'Sites'], ['produtos', 'Produtos'],
 export default function Home() {
   useDocumentTitle('Beatriz Vieira Ramos | Product Designer, Webdesigner & Front-end');
   const [filter, setFilter] = useState<string>('all');
-  const featured = projects.slice(0, FEATURED).filter(p => filter === 'all' || groupOf(p) === filter);
+  // 'Todos' mostra os destaques; os outros filtros procuram em todos os projetos (os primeiros 7 não têm Ferramentas nem a maioria dos Produtos)
+  const featured = filter === 'all' ? projects.slice(0, FEATURED) : projects.filter(p => groupOf(p) === filter);
 
   return (
     <main>
