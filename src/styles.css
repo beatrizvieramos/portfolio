@@ -481,3 +481,14 @@ html.has-star,html.has-star *{cursor:none!important}
 .nav__logo{background:none;border-radius:0;padding:0}
 .nav__logo img{height:34px}
 @media (max-width:760px){.nav__logo{padding:0}.nav__logo img{height:26px}}
+
+/* ---- botão flutuante "Entre em contato" (estrela da marca → WhatsApp) ---- */
+.fab{position:fixed;right:24px;bottom:24px;z-index:40;display:flex;align-items:center;height:52px;min-width:52px;padding:0 14px;border-radius:999px;background:var(--pink);color:var(--ink);border:1.5px solid var(--green);box-shadow:0 8px 24px rgba(10,9,9,.14);overflow:hidden;font-weight:600;font-size:15px;line-height:1;white-space:nowrap;animation:fabPulse 3s ease-out infinite;transition:opacity .3s ease,transform .3s ease}
+.fab__star{width:24px;height:24px;flex:none;animation:spin 14s linear infinite}
+.fab__label{max-width:0;opacity:0;overflow:hidden;transition:max-width .35s ease,opacity .25s ease,margin .3s ease}
+.fab:hover .fab__label,.fab:focus-visible .fab__label{max-width:190px;opacity:1;margin-left:10px}
+.fab:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.fab.is-hidden{opacity:0;pointer-events:none;transform:translateY(12px)}
+@keyframes fabPulse{0%{box-shadow:0 8px 24px rgba(10,9,9,.14),0 0 0 0 rgba(43,99,73,.35)}70%,100%{box-shadow:0 8px 24px rgba(10,9,9,.14),0 0 0 14px rgba(43,99,73,0)}}
+@media (max-width:1023px){.fab{right:16px;bottom:max(16px,env(safe-area-inset-bottom));width:48px;height:48px;min-width:48px;padding:0;justify-content:center}.fab__label{display:none}}
+@media (prefers-reduced-motion:reduce){.fab,.fab__star{animation:none}}

@@ -152,6 +152,34 @@ function StarCursor() {
   );
 }
 
+const WA_URL = 'https://wa.me/5579991378686?text=Ol%C3%A1%2C%20quero%20fazer%20um%20or%C3%A7amento%20%E2%9C%A6';
+
+/** Botão flutuante discreto: estrela da marca; ao passar o mouse mostra "Entre em contato" e abre o WhatsApp. */
+function WhatsAppFab() {
+  const { pathname } = useLocation();
+  const [hide, setHide] = useState(false);
+
+  // some quando o rodapé ou os botões de navegação do case estão na tela (evita cobrir "Voltar ao topo" etc.)
+  useEffect(() => {
+    const targets = [...document.querySelectorAll('#rodape, .case-nav')];
+    if (!targets.length) { setHide(false); return; }
+    const seen = new Set<Element>();
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
+      setHide(seen.size > 0);
+    });
+    targets.forEach(t => io.observe(t));
+    return () => io.disconnect();
+  }, [pathname]);
+
+  return (
+    <a className={`fab${hide ? ' is-hidden' : ''}`} href={WA_URL} target="_blank" rel="noopener noreferrer" aria-label="Entre em contato pelo WhatsApp" tabIndex={hide ? -1 : 0}>
+      <svg className="fab__star" viewBox="0 0 32 32" aria-hidden="true"><path d={CURSOR_STAR} fill="#2B6349" /></svg>
+      <span className="fab__label">Entre em contato</span>
+    </a>
+  );
+}
+
 export function Layout() {
   return (
     <>
@@ -160,6 +188,7 @@ export function Layout() {
       <Footer />
       <PageEffects />
       <StarCursor />
+      <WhatsAppFab />
     </>
   );
 }
