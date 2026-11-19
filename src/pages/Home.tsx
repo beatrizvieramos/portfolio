@@ -97,13 +97,13 @@ function Hero() {
   );
 }
 
-const FILTERS = [['all', 'Todos'], ['sites', 'Sites'], ['produtos', 'Produtos'], ['ferramentas', 'Ferramentas']] as const;
+const FILTERS = [['all', 'Todos'], ['sites', 'Sites'], ['produtos', 'Produtos'], ['ferramentas', 'Ferramentas'], ['estudos', 'Case de Estudo']] as const;
 
 export default function Home() {
   useDocumentTitle('Beatriz Vieira Ramos | Product Designer, Webdesigner & Front-end');
   const [filter, setFilter] = useState<string>('all');
   // 'Todos' mostra os destaques; os outros filtros procuram em todos os projetos (os primeiros 7 não têm Ferramentas nem a maioria dos Produtos)
-  const featured = filter === 'all' ? projects.slice(0, FEATURED) : projects.filter(p => groupOf(p) === filter);
+  const featured = filter === 'all' ? projects.slice(0, FEATURED) : projects.filter(p => (filter === 'estudos' ? !!p.study : groupOf(p) === filter));
 
   return (
     <main>
