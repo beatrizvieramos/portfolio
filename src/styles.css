@@ -136,6 +136,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ferramentas */
 .groups{overflow:hidden;padding:6px 0}
+.tdots{display:flex;justify-content:center;gap:4px;margin-top:16px}
+.tdot{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:none;border:0;cursor:pointer}
+.tdot::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--line);transition:.25s}
+.tdot[aria-current=true]::before{background:var(--ink);width:24px;border-radius:6px}
 .groups__track{display:flex;gap:16px;will-change:transform}
 .group{flex:0 0 calc((100% - 32px)/3);border-radius:32px;padding:32px;background:var(--mist)} .group--pink{background:var(--pink-soft)} .group .label{color:var(--green);margin-bottom:24px;display:block}
 .tools{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}

@@ -21,8 +21,8 @@ const Tl = ({ f }: { f: string }) => <img src={asset(`img/tools/${f}.svg`)} alt=
 const toolGroups: { name: Key; cls: string; tools: [string, React.ReactNode][] }[] = [
   { name: 'tools.design', cls: '', tools: [['Figma', <Tl f="figma-color" />], ['FigJam', <Ico bg="#0D0D0D" fg="#fff" t="Fj" />], ['Photoshop', <Ico bg="#001E36" fg="#31A8FF" t="Ps" />], ['Illustrator', <Ico bg="#330000" fg="#FF9A00" t="Ai" />]] },
   { name: 'tools.mgmt', cls: 'group--pink', tools: [['Jira', <Ico bg="#0052CC" fg="#fff" t="Ji" />], ['Asana', <Ico bg="#F06A6A" fg="#fff" t="As" />], ['Notion', <Tl f="notion" />], ['Trello', <Tl f="trello" />]] },
-  { name: 'tools.ai', cls: '', tools: [['Claude', <Tl f="claude" />], ['Gemini', <Ico bg="#fff" fg="#4285F4" t="✦" />], ['ChatGPT', <Tl f="chatgpt" />], ['Lovable', <Ico bg="#FF4D8D" fg="#fff" t="♥" />], ['Codex', <Ico bg="#0D0D0D" fg="#fff" t=">_" />]] },
-  { name: 'tools.dev', cls: '', tools: [['HTML5', <Tl f="html5" />], ['CSS3', <Tl f="css" />], ['Sass', <Tl f="sass" />], ['JavaScript', <Tl f="javascript" />], ['Bootstrap', <Tl f="bootstrap" />], ['React (básico)', <Ico bg="#20232A" fg="#61DAFB" t="⚛" />], ['Ruby on Rails', <Tl f="rubyonrails" />]] },
+  { name: 'tools.ai', cls: '', tools: [['Claude', <Tl f="claude" />], ['Gemini', <Ico bg="#fff" fg="#4285F4" t="✦" />], ['ChatGPT', <Tl f="chatgpt" />], ['Lovable', <Ico bg="#FF4D8D" fg="#fff" t="♥" />]] },
+  { name: 'tools.dev', cls: '', tools: [['HTML5', <Tl f="html5" />], ['CSS3', <Tl f="css" />], ['Sass', <Tl f="sass" />], ['JavaScript', <Tl f="javascript" />], ['Bootstrap', <Tl f="bootstrap" />], ['React (básico)', <Ico bg="#20232A" fg="#61DAFB" t="⚛" />]] },
 ];
 
 // período/curso: texto fixo ou chave do dicionário (marcada com "@"); empresas, instituições e cidades não são traduzidas
@@ -39,14 +39,18 @@ const ToolsGrid = () => {
   const wrap = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const paused = useRef(false);
+  const goTo = useRef<(i: number) => void>(() => {});
+  const [cur, setCur] = useState(0);
   const n = toolGroups.length;
   // loop infinito: a lista é renderizada duas vezes; avança um card e, ao fim da 1ª volta, volta ao início sem animação
   useEffect(() => {
     const tr = track.current;
     if (!tr) return;
     let idx = 0;
+    const sync = () => setCur(idx % n);
     const unit = () => { const c = tr.children[0] as HTMLElement | undefined; return c ? c.offsetWidth + 16 : 0; };
-    const place = (animate: boolean) => { tr.style.transition = animate ? 'transform .7s cubic-bezier(.3,.7,.2,1)' : 'none'; tr.style.transform = `translateX(${-idx * unit()}px)`; };
+    const place = (animate: boolean) => { tr.style.transition = animate ? 'transform .7s cubic-bezier(.3,.7,.2,1)' : 'none'; tr.style.transform = `translateX(${-idx * unit()}px)`; sync(); };
+    goTo.current = (i: number) => { idx = i; place(true); };
     const onResize = () => place(false);
     window.addEventListener('resize', onResize);
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -62,6 +66,7 @@ const ToolsGrid = () => {
             <div className="tools">{g.tools.map(([nm, icon]) => <div className="tool" key={nm}>{icon}<span>{nm}</span></div>)}</div></div>
         ))}
       </div>
+      <div className="tdots">{toolGroups.map((g, i) => <button key={g.name} type="button" className="tdot" aria-label={t(g.name)} aria-current={cur === i ? 'true' : undefined} onClick={() => goTo.current(i)} />)}</div>
     </div>
   );
 };
