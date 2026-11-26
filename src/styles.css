@@ -135,7 +135,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .svc:hover .svc__arrow{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
 /* ferramentas */
-.groups{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.groups{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 0;outline:none}
+.groups::-webkit-scrollbar{display:none}
+.group{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start}
 .group{border-radius:24px;padding:20px 22px;background:var(--mist)} .group--pink{background:var(--pink-soft)} .group .label{color:var(--green);margin-bottom:12px;display:block}
 .tools{display:flex;flex-wrap:wrap;gap:8px}
 .tool{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;background:var(--card);border:1.5px solid var(--line);font-weight:500;font-size:13px;transition:background .25s,border-color .25s,color .25s,transform .25s}
@@ -275,7 +277,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .nav__links{display:none} .nav__burger{display:block}
   .nav.open .nav__links{display:flex;position:absolute;top:84px;left:0;right:0;flex-direction:column;gap:18px;padding:28px;background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--sh-pop)}
   .nav__cta{display:none}
-  .grid,.cards--4,.cards--3,.skills{grid-template-columns:1fr 1fr} .groups{grid-template-columns:1fr}
+  .grid,.cards--4,.cards--3,.skills{grid-template-columns:1fr 1fr} .group{flex-basis:calc((100% - 16px)/2)}
   .about-hero{grid-template-columns:1fr}.collage{margin:0 auto}
   .brandrow,.case-overview{grid-template-columns:1fr}
   .b--statement,.b--photo,.b--stat,.b--list{grid-column:span 12}
@@ -285,7 +287,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 @media (max-width:760px){
   :root{--pad:20px}
-  .grid,.cards--2,.cards--3,.cards--4,.skills{grid-template-columns:1fr}
+  .grid,.cards--2,.cards--3,.cards--4,.skills{grid-template-columns:1fr} .group{flex-basis:86%}
   .hero{height:auto;padding:110px 20px 40px;overflow:visible}
   .hero .name{position:static;font-size:22vw;display:block}.name--solid{text-align:right}
   .hero__arch{position:relative;left:auto;top:auto;transform:none;margin:-8vw auto 0;width:58vw}

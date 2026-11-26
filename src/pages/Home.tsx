@@ -36,11 +36,30 @@ const ExpRows = ({ rows }: { rows: string[][] }) => {
 
 const ToolsGrid = () => {
   const { t } = useI18n();
+  const track = useRef<HTMLDivElement>(null);
+  const paused = useRef(false);
+  // avança um card por vez, em loop; pausa com mouse/foco/toque e não anima com "reduzir movimento"
+  useEffect(() => {
+    const el = track.current;
+    if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const id = window.setInterval(() => {
+      if (paused.current) return;
+      const card = el.querySelector('.group') as HTMLElement | null;
+      if (!card) return;
+      const step = card.offsetWidth + 16;
+      const max = el.scrollWidth - el.clientWidth;
+      el.scrollTo({ left: el.scrollLeft + step > max + 4 ? 0 : el.scrollLeft + step, behavior: 'smooth' });
+    }, 3200);
+    return () => window.clearInterval(id);
+  }, []);
+  const hold = (v: boolean) => () => { paused.current = v; };
   return (
-    <div className="groups">{toolGroups.map(g => (
-      <div className={`group ${g.cls}`} key={g.name}><span className="label">{t(g.name)}</span>
-        <div className="tools">{g.tools.map(([n, icon]) => <div className="tool" key={n}>{icon}<span>{n}</span></div>)}</div></div>
-    ))}</div>
+    <div className="groups" ref={track} tabIndex={0} aria-roledescription="carousel" aria-label={t('home.tools')}
+      onMouseEnter={hold(true)} onMouseLeave={hold(false)} onFocus={hold(true)} onBlur={hold(false)} onTouchStart={hold(true)} onTouchEnd={() => window.setTimeout(hold(false), 4000)}>
+      {toolGroups.map(g => (
+        <div className={`group ${g.cls}`} key={g.name}><span className="label">{t(g.name)}</span>
+          <div className="tools">{g.tools.map(([n, icon]) => <div className="tool" key={n}>{icon}<span>{n}</span></div>)}</div></div>
+      ))}</div>
   );
 };
 
