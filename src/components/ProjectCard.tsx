@@ -4,7 +4,8 @@ import type { Project } from '../data/projects';
 import { useInView } from '../hooks/useInView';
 import { Scene, Arrow } from './ui';
 
-export const groupOf = (p: Project) => (p.cat === 'Produto' ? 'produtos' : p.cat === 'Ferramenta' ? 'ferramentas' : 'sites');
+// Cada projeto cai em UM grupo: estudos pessoais só aparecem em "Todos" e "Case de Estudo" (nunca em Sites/Produtos/Ferramentas), inclusive os novos.
+export const groupOf = (p: Project) => (p.study ? 'estudos' : p.cat === 'Produto' ? 'produtos' : p.cat === 'Ferramenta' ? 'ferramentas' : 'sites');
 export const hasPage = (p: Project) => !p.live && !!p.case;
 
 type Phase = 'idle' | 'loading' | 'ready';

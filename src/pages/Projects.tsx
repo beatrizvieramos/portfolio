@@ -10,7 +10,7 @@ const FILTERS = [['all', 'Todos'], ['sites', 'Sites'], ['produtos', 'Produtos'],
 export default function Projects() {
   useDocumentTitle('Todos os projetos | Beatriz Vieira Ramos', 'Todos os projetos de Beatriz Vieira Ramos: sites, produtos digitais e ferramentas.');
   const [filter, setFilter] = useState<string>('all');
-  const list = projects.filter(p => filter === 'all' || (filter === 'estudos' ? !!p.study : groupOf(p) === filter));
+  const list = projects.filter(p => filter === 'all' || groupOf(p) === filter);
   return (
     <main>
       <section className="section section--top"><div className="wrap">
