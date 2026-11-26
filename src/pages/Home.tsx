@@ -36,31 +36,33 @@ const ExpRows = ({ rows }: { rows: string[][] }) => {
 
 const ToolsGrid = () => {
   const { t } = useI18n();
+  const wrap = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const paused = useRef(false);
-  // avança um card por vez, em loop; pausa com mouse/foco/toque e não anima com "reduzir movimento"
+  const n = toolGroups.length;
+  // loop infinito: a lista é renderizada duas vezes; avança um card e, ao fim da 1ª volta, volta ao início sem animação
   useEffect(() => {
-    const el = track.current;
-    if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const id = window.setInterval(() => {
-      if (paused.current) return;
-      const card = el.querySelector('.group') as HTMLElement | null;
-      if (!card) return;
-      const w = card.offsetWidth + 16;
-      const step = Math.max(1, Math.floor((el.clientWidth + 16) / w + 0.05)) * w; // avança uma "página": 3 no desktop, 2 no tablet, 1 no celular
-      const max = el.scrollWidth - el.clientWidth;
-      el.scrollTo({ left: el.scrollLeft >= max - 4 ? 0 : Math.min(el.scrollLeft + step, max), behavior: 'smooth' });
-    }, 3200);
-    return () => window.clearInterval(id);
-  }, []);
+    const tr = track.current;
+    if (!tr) return;
+    let idx = 0;
+    const unit = () => { const c = tr.children[0] as HTMLElement | undefined; return c ? c.offsetWidth + 16 : 0; };
+    const place = (animate: boolean) => { tr.style.transition = animate ? 'transform .7s cubic-bezier(.3,.7,.2,1)' : 'none'; tr.style.transform = `translateX(${-idx * unit()}px)`; };
+    const onResize = () => place(false);
+    window.addEventListener('resize', onResize);
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const id = reduce ? 0 : window.setInterval(() => { if (paused.current) return; idx += 1; place(true); window.setTimeout(() => { if (idx >= n) { idx = 0; place(false); } }, 760); }, 2400);
+    return () => { window.clearInterval(id); window.removeEventListener('resize', onResize); };
+  }, [n]);
   const hold = (v: boolean) => () => { paused.current = v; };
   return (
-    <div className="groups" ref={track} tabIndex={0} aria-roledescription="carousel" aria-label={t('home.tools')}
-      onMouseEnter={hold(true)} onMouseLeave={hold(false)} onFocus={hold(true)} onBlur={hold(false)} onTouchStart={hold(true)} onTouchEnd={() => window.setTimeout(hold(false), 4000)}>
-      {toolGroups.map(g => (
-        <div className={`group ${g.cls}`} key={g.name}><span className="label">{t(g.name)}</span>
-          <div className="tools">{g.tools.map(([n, icon]) => <div className="tool" key={n}>{icon}<span>{n}</span></div>)}</div></div>
-      ))}</div>
+    <div className="groups" ref={wrap} aria-roledescription="carousel" aria-label={t('home.tools')} onMouseEnter={hold(true)} onMouseLeave={hold(false)} onFocus={hold(true)} onBlur={hold(false)}>
+      <div className="groups__track" ref={track}>
+        {[...toolGroups, ...toolGroups].map((g, i) => (
+          <div className={`group ${g.cls}`} key={i} aria-hidden={i >= n || undefined}><span className="label">{t(g.name)}</span>
+            <div className="tools">{g.tools.map(([nm, icon]) => <div className="tool" key={nm}>{icon}<span>{nm}</span></div>)}</div></div>
+        ))}
+      </div>
+    </div>
   );
 };
 
