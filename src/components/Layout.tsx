@@ -60,7 +60,10 @@ function Footer() {
     <footer className="footer" id="rodape">
       <i className="fstar spin" style={{ right: '-2%', top: '42%', width: 'min(420px,32vw)' }}><GradStar id="g1" /></i>
       <i className="fstar spin-r" style={{ left: '42%', top: '-6%', width: 120 }}><GradStar id="g2" /></i>
-      <Link className="footer__logo" to="/" aria-label="biatriz"><img src={asset('img/logo/biatriz-rosa.svg')} alt="biatriz" width={240} height={59} /></Link>
+      <div className="footer__top">
+        <Link className="footer__logo" to="/" aria-label="biatriz"><img src={asset('img/logo/biatriz-rosa.svg')} alt="biatriz" width={240} height={59} /></Link>
+        <LangSwitch variant="dark" className="footer__lang" />
+      </div>
       <div className="fgrid">
         <div><span className="label">{t('foot.pages')}</span>
           <Link to="/">{t('foot.home')}</Link><Link to="/projetos">{t('nav.projects')}</Link><Link to={to('servicos')}>{t('nav.services')}</Link><Link to={to('ferramentas')}>{t('nav.tools')}</Link><Link to="/sobre">{t('nav.about')}</Link><Link to={to('experiencia')}>{t('nav.experience')}</Link><Link to={to('contato')}>{t('nav.contact')}</Link></div>
@@ -73,7 +76,7 @@ function Footer() {
       <div className="fname" aria-label="beatriz vieira">
         {letters.map((ch, i) => (ch === ' ' ? <span className="sp" aria-hidden="true" key={i} /> : <span aria-hidden="true" key={i}>{ch}</span>))}
       </div>
-      <div className="fbar"><span>{t('foot.copy')}</span><LangSwitch variant="dark" className="fbar__lang" /><a href="#top" onClick={e => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); }}>{t('foot.top')} <Arrow d="up" /></a></div>
+      <div className="fbar"><span>{t('foot.copy')}</span><a href="#top" onClick={e => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); }}>{t('foot.top')} <Arrow d="up" /></a></div>
     </footer>
   );
 }

@@ -515,3 +515,12 @@ html.has-star,html.has-star *{cursor:none!important}
   .fbar__lang .lang__btn{min-width:48px;height:44px}
   .fbar{align-items:center}
 }
+
+/* ---- rodapé: logo à esquerda e seletor de idioma à direita, no topo ---- */
+.footer__top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:64px}
+.footer__top .footer__logo{margin-bottom:0}
+@media (max-width:760px){
+  .footer__top{margin-bottom:32px}
+  .footer__top .footer__logo img{width:118px}
+  .footer__lang .lang__btn{min-width:44px;height:44px;padding:0 6px}
+}
