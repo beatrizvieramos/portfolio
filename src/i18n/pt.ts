@@ -32,6 +32,9 @@ export const pt = {
   // botão flutuante
   'fab.label': 'Entre em contato',
   'fab.aria': 'Entre em contato pelo WhatsApp',
+  'theme.aria': 'Alternar tema claro/escuro',
+  'theme.dark': 'Ativar tema escuro',
+  'theme.light': 'Ativar tema claro',
 
   // comuns
   'common.viewAll': 'Ver todos',

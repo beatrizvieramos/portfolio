@@ -29,6 +29,9 @@ export const es: Partial<Dict> = {
 
   'fab.label': 'Contáctame',
   'fab.aria': 'Contáctame por WhatsApp',
+  'theme.aria': 'Alternar tema claro/oscuro',
+  'theme.dark': 'Activar tema oscuro',
+  'theme.light': 'Activar tema claro',
 
   'common.viewAll': 'Ver todos',
   'common.contact': 'Contáctame',

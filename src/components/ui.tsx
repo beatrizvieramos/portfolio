@@ -4,7 +4,7 @@ import { useI18n } from '../i18n';
 
 export type Vars = CSSProperties & { [k: `--${string}`]: string | number };
 
-const COLORS: Record<string, string> = { pink: '#FFB9DA', green: '#2B6349', ink: '#0A0909', paper: '#FFFFFF' };
+const COLORS: Record<string, string> = { pink: 'var(--pink)', green: 'var(--green)', ink: 'var(--ink)', paper: 'var(--paper)' };
 const STAR_PATH = 'M12 0C12.8 7 17 11.2 24 12C17 12.8 12.8 17 12 24C11.2 17 7 12.8 0 12C7 11.2 11.2 7 12 0Z';
 
 export const asset = (p: string) => `/assets/${p}`;
@@ -13,7 +13,7 @@ export function Spark({ c, s = 28, cls = '', style }: { c: string; s?: number; c
   const st: Vars = { '--s': `${s}px`, ...style };
   return (
     <i className={`spark ${cls}`} style={st}>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d={STAR_PATH} fill={COLORS[c] || c} /></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d={STAR_PATH} style={{ fill: COLORS[c] || c }} /></svg>
     </i>
   );
 }

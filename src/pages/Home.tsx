@@ -252,7 +252,7 @@ export default function Home() {
           <div className="b b--statement reveal"><p className="h3">{t('bento.statement1')}</p><p>{t('bento.statement2')}</p></div>
           <div className="b b--photo reveal" role="img" aria-label={t('bento.photoAlt')} style={{ backgroundImage: `url(${asset('img/me/foto.jpg')})` }} />
           <div className="b b--stat reveal" style={{ background: 'var(--pink)' }}><span className="h2">2015</span><p>{t('bento.stat1')}</p></div>
-          <div className="b b--stat reveal" style={{ background: 'var(--green)', color: '#fff' }}><span className="h2">{t('bento.stat2.t')}</span><p>{t('bento.stat2')}</p></div>
+          <div className="b b--stat reveal" style={{ background: 'var(--green-fill)', color: '#fff' }}><span className="h2">{t('bento.stat2.t')}</span><p>{t('bento.stat2')}</p></div>
           <div className="b b--stat reveal" style={{ background: 'var(--mist)' }}><span className="h2">IA</span><p>{t('bento.stat3')}</p></div>
           <div className="b b--list reveal"><span className="label">{t('bento.do.label')}</span><p>{t('bento.do.list')}</p></div>
           <div className="b b--list b--list--pink reveal"><span className="label">{t('bento.brands.label')}</span><p>{'Alfama Web\nPrimasa Camel\nTerrah\nLa Lena FHV\nEntre Rios\nGerador de Criativos'}</p></div>

@@ -4,11 +4,13 @@ import { site } from '../data/projects';
 import { GradStar, asset, Arrow } from './ui';
 import { LangSwitch } from './LangSwitch';
 import { useI18n } from '../i18n';
+import { useTheme } from '../theme';
 
 const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function Nav() {
   const { t } = useI18n();
+  const { theme } = useTheme();
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
   const [active, setActive] = useState('');
@@ -33,7 +35,7 @@ function Nav() {
   const cur = (k: string) => (active === k ? { 'aria-current': 'true' as const } : {});
   return (
     <header className={`nav${open ? ' open' : ''}`} id="top">
-      <Link className="nav__logo" to="/" aria-label={t('nav.home')} onClick={close}><img src={asset('img/logo/biatriz-verde.svg')} alt="Beatriz Vieira" width={139} height={34} /></Link>
+      <Link className="nav__logo" to="/" aria-label={t('nav.home')} onClick={close}><img src={asset(theme === 'dark' ? 'img/logo/biatriz-rosa.svg' : 'img/logo/biatriz-verde.svg')} alt="Beatriz Vieira" width={139} height={34} /></Link>
       <nav className="nav__links" aria-label={t('nav.aria')}>
         <Link to="/projetos" onClick={close} {...cur('projetos')}>{t('nav.projects')}</Link>
         <Link to={to('servicos')} onClick={close} {...cur('servicos')}>{t('nav.services')}</Link>
@@ -158,13 +160,43 @@ function StarCursor() {
   }, []);
   return (
     <div ref={el} className="star-cursor" aria-hidden="true">
-      <svg viewBox="0 0 32 32"><path d={CURSOR_STAR} fill="#FFB9DA" stroke="#2B6349" strokeWidth="2" strokeLinejoin="round" /></svg>
+      <svg viewBox="0 0 32 32"><path d={CURSOR_STAR} fill="#FFB9DA" stroke="var(--cursor-stroke)" strokeWidth="2" strokeLinejoin="round" /></svg>
     </div>
   );
 }
 
-/** Botão flutuante discreto: estrela da marca; ao passar o mouse mostra "Entre em contato" e abre o WhatsApp. */
-function WhatsAppFab() {
+/** Ícone do botão de tema: sol (claro) e lua (escuro) com estrelinhas da marca; cruzam com giro suave. */
+function ThemeIcon() {
+  return (
+    <svg className="themebtn__ico" viewBox="0 0 24 24" aria-hidden="true">
+      <g className="themebtn__sun">
+        <circle cx="12" cy="12" r="4.2" fill="var(--pink)" stroke="var(--ink)" strokeWidth="1.6" />
+        <g stroke="var(--ink)" strokeWidth="1.6" strokeLinecap="round">
+          <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5" />
+        </g>
+      </g>
+      <g className="themebtn__moon">
+        <path d="M19.5 14.6A8 8 0 0 1 9.4 4.5a8 8 0 1 0 10.1 10.1Z" fill="var(--pink)" stroke="var(--ink)" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M17.5 3.5c.25 1.6 1 2.35 2.6 2.6-1.6.25-2.35 1-2.6 2.6-.25-1.6-1-2.35-2.6-2.6 1.6-.25 2.35-1 2.6-2.6Z" fill="var(--green)" />
+      </g>
+    </svg>
+  );
+}
+
+/** Botão de tema (claro/escuro): círculo de 44px, logo abaixo do botão de contato. */
+function ThemeToggle({ hidden }: { hidden: boolean }) {
+  const { t } = useI18n();
+  const { theme, toggle } = useTheme();
+  const dark = theme === 'dark';
+  return (
+    <button type="button" className="themebtn" aria-pressed={dark} aria-label={t('theme.aria')} title={t(dark ? 'theme.light' : 'theme.dark')} onClick={toggle} tabIndex={hidden ? -1 : 0}>
+      <ThemeIcon />
+    </button>
+  );
+}
+
+/** Dock fixo no canto inferior direito: contato (estrela da marca → WhatsApp) em cima e tema embaixo. Some com o rodapé / botões do case. */
+function Dock() {
   const { t, wa } = useI18n();
   const { pathname } = useLocation();
   const [hide, setHide] = useState(false);
@@ -183,10 +215,13 @@ function WhatsAppFab() {
   }, [pathname]);
 
   return (
-    <a className={`fab${hide ? ' is-hidden' : ''}`} href={wa} target="_blank" rel="noopener noreferrer" aria-label={t('fab.aria')} tabIndex={hide ? -1 : 0}>
-      <svg className="fab__star" viewBox="0 0 32 32" aria-hidden="true"><path d={CURSOR_STAR} fill="#2B6349" /></svg>
-      <span className="fab__label">{t('fab.label')}</span>
-    </a>
+    <div className={`dock${hide ? ' is-hidden' : ''}`}>
+      <a className="fab" href={wa} target="_blank" rel="noopener noreferrer" aria-label={t('fab.aria')} tabIndex={hide ? -1 : 0}>
+        <svg className="fab__star" viewBox="0 0 32 32" aria-hidden="true"><path d={CURSOR_STAR} fill="#2B6349" /></svg>
+        <span className="fab__label">{t('fab.label')}</span>
+      </a>
+      <ThemeToggle hidden={hide} />
+    </div>
   );
 }
 
@@ -198,7 +233,7 @@ export function Layout() {
       <Footer />
       <PageEffects />
       <StarCursor />
-      <WhatsAppFab />
+      <Dock />
     </>
   );
 }

@@ -29,6 +29,9 @@ export const en: Partial<Dict> = {
 
   'fab.label': 'Get in touch',
   'fab.aria': 'Get in touch on WhatsApp',
+  'theme.aria': 'Toggle light/dark theme',
+  'theme.dark': 'Switch to dark theme',
+  'theme.light': 'Switch to light theme',
 
   'common.viewAll': 'View all',
   'common.contact': 'Get in touch',

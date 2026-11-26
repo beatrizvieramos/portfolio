@@ -30,14 +30,14 @@ export default function About() {
         <div><span className="label g">{t('about.kicker')}</span><h1 className="h1">{t('about.h1a')}<span className="g">{t('about.h1b')}</span></h1>
           <p className="intro">{t('about.intro')}</p>
           <div className="facts">
-            <span className="fact" style={{ background: 'var(--green)', color: '#fff' }}>Aracaju · SE</span><span className="fact" style={{ background: 'var(--ink)', color: '#fff' }}>Product Designer</span>
+            <span className="fact" style={{ background: 'var(--green-fill)', color: '#fff' }}>Aracaju · SE</span><span className="fact" style={{ background: 'var(--dsurf)', color: '#fff' }}>Product Designer</span>
             <span className="fact" style={{ background: 'var(--pink)' }}>Webdesigner</span><span className="fact" style={{ background: 'var(--mist)' }}>Front-end</span><span className="fact" style={{ background: 'var(--mist)' }}>{t('about.fact.ai')}</span></div></div>
         <div className="collage" aria-hidden="true">
           <div className="blob" />
           <div className="polaroid"><img src={asset('img/me/foto.jpg')} alt="" /><b>biatriz ✦</b></div>
           <div className="arch2"><img src={asset('img/avatar/center.jpg')} alt="" /></div>
-          <span className="sticker" style={sticker(400, 70, 'var(--green)', 6, '.9s,1s', '#fff')}>Aracaju, SE</span>
-          <span className="sticker" style={sticker(30, 640, 'var(--ink)', -5, '1.1s,1s', '#fff')}>Product Designer ✦</span>
+          <span className="sticker" style={sticker(400, 70, 'var(--green-fill)', 6, '.9s,1s', '#fff')}>Aracaju, SE</span>
+          <span className="sticker" style={sticker(30, 640, 'var(--dsurf)', -5, '1.1s,1s', '#fff')}>Product Designer ✦</span>
           <span className="sticker" style={sticker(420, 660, 'var(--pink)', 4, '1.3s,1s')}>{t('about.sticker.since')}</span>
           <Spark c="pink" s={64} cls="spin" style={pos(300, 30)} /><Spark c="green" s={44} cls="spin-r" style={pos(590, 360)} /><Spark c="ink" s={28} cls="spin" style={pos(60, 10)} /><Spark c="pink" s={40} cls="spin-r" style={pos(10, 420)} />
         </div>
@@ -61,7 +61,7 @@ export default function About() {
         </div></section>
 
         <section><SecHead label={t('about.interests')} /><div className="interests reveal">
-          {tl('about.interests.list').map((x, i) => { const c = interestColors[i]; return <span className="interest" key={x} style={{ '--n': i, background: `var(--${c})`, color: c === 'ink' || c === 'green' ? '#fff' : undefined } as Vars}>{x}</span>; })}
+          {tl('about.interests.list').map((x, i) => { const c = interestColors[i]; return <span className="interest" key={x} style={{ '--n': i, background: c === 'ink' ? 'var(--dsurf)' : c === 'green' ? 'var(--green-fill)' : `var(--${c})`, color: c === 'ink' || c === 'green' ? '#fff' : undefined } as Vars}>{x}</span>; })}
         </div></section>
 
         <section><SecHead label={t('about.how')} /><div className="skills reveal">
