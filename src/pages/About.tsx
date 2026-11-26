@@ -62,6 +62,8 @@ export default function About() {
           <Focus cls="soft" n={5} title={t('about.focus.5.t')} body={t('about.focus.5.d')} chips={tl('about.focus.5.chips')} star="ink" />
         </div></section>
 
+        <section><SecHead label={t('about.does')} /><div className="reveal"><Chips items={tl('about.does.list')} /></div></section>
+
         <section><SecHead label={t('about.interests')} /><div className="interests reveal">
           {tl('about.interests.list').map((x, i) => { const c = interestColors[i]; return <span className="interest" key={x} style={{ '--n': i, background: c === 'ink' ? 'var(--dsurf)' : c === 'green' ? 'var(--green-fill)' : `var(--${c})`, color: c === 'ink' || c === 'green' ? '#fff' : undefined } as Vars}>{x}</span>; })}
         </div></section>

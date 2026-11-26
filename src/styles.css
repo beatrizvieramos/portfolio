@@ -135,7 +135,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .svc:hover .svc__arrow{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
 /* ferramentas */
-.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.groups{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .group{border-radius:32px;padding:32px;background:var(--mist)} .group--pink{background:var(--pink-soft)} .group .label{color:var(--green);margin-bottom:24px;display:block}
 .tools{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .tool{display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 16px;border-radius:24px;background:var(--card);border:1.5px solid var(--line);font-weight:500;transition:background .25s,border-color .25s,color .25s,transform .25s}
