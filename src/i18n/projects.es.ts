@@ -115,12 +115,12 @@ export const projectsES: Record<string, ProjectI18n> = {
     cat: `Producto`,
     lead: `Herramienta que genera landing pages de lanzamientos inmobiliarios a partir de los emprendimientos del CV CRM y devuelve los leads al CRM.`,
     paras: [
-      `Después del registro de la empresa, de la conexión con el CV CRM y del vínculo de los emprendimientos, el inicio lista cada uno con el estado de la página. El flujo de creación tiene 7 pasos: datos, formulario, SEO y campaña, estructura, visual, revisión y publicación. Hay 6 estilos visuales: Contemporáneo, Minimalista, Alto estándar, Natural, Urbano y Premium.`,
+      `Después del acceso (entrar, recuperar contraseña e invitación), del registro de la empresa, de la conexión con el CV CRM y del vínculo de los emprendimientos, el inicio lista cada uno con el estado de la página. El flujo de creación tiene 7 pasos: datos, formulario, SEO y campaña, estructura, visual, revisión y publicación. Hay 6 estilos visuales: Contemporáneo, Minimalista, Alto estándar, Natural, Urbano y Premium.`,
       `Una vez publicada, la página gana un panel con visitantes, leads, conversión, envíos al CV CRM (con log solo de lo que falló, ya que los leads quedan en el CRM), score de la página y sugerencias. El archivo incluye además el kit de componentes de las páginas generadas, versiones Desktop, Tablet y Mobile y la documentación del flujo.`,
     ],
     role: [`UI Design`, `Product Design`, `Design System`, `Prototipado`],
-    caps: [`Registro e inicio · Vincular emprendimientos y lista de páginas`, `Creación · Visual e identidad`, `Página publicada y plantilla generada · Contemporáneo`],
-    mobileCap: `Mobile · landing pages generadas · Contemporáneo, Urbano y Premium`,
+    caps: [`Acceso y registro · Entrar, conectar el CV CRM y vincular emprendimientos`, `Inicio y creación · Lista de emprendimientos, SEO y campaña, visual e identidad`, `Revisión, publicación e integración · Revisar, página publicada e integración con el CV CRM`],
+    mobileCap: `Mobile · inicio, revisión y página publicada`,
   },
   'primasa-camel': {
     cat: `Website`,

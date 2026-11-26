@@ -115,12 +115,12 @@ export const projectsEN: Record<string, ProjectI18n> = {
     cat: `Product`,
     lead: `Tool that generates landing pages for real estate launches from the developments in CV CRM and delivers the leads back to the CRM.`,
     paras: [
-      `After company registration, the CV CRM connection and linking the developments, the start screen lists each one with the page status. The creation flow has 7 steps: data, form, SEO and campaign, structure, visual, review and publishing. There are 6 visual styles: Contemporary, Minimalist, High-end, Natural, Urban and Premium.`,
+      `After access (sign in, password recovery and invite), company registration, the CV CRM connection and linking the developments, the start screen lists each one with the page status. The creation flow has 7 steps: data, form, SEO and campaign, structure, visual, review and publishing. There are 6 visual styles: Contemporary, Minimalist, High-end, Natural, Urban and Premium.`,
       `Once published, the page gets a dashboard with visitors, leads, conversion, submissions to CV CRM (with a log of only what failed, since the leads stay in the CRM), page score and suggestions. The file also includes the component kit for the generated pages, Desktop, Tablet and Mobile versions and the flow documentation.`,
     ],
     role: [`UI Design`, `Product Design`, `Design System`, `Prototyping`],
-    caps: [`Registration and start · Link developments and page list`, `Creation · Visual and identity`, `Published page and generated template · Contemporary`],
-    mobileCap: `Mobile · generated landing pages · Contemporary, Urban and Premium`,
+    caps: [`Access and registration · Sign in, connect CV CRM and link developments`, `Start and creation · Development list, SEO and campaign, visual and identity`, `Review, publishing and integration · Review, published page and CV CRM integration`],
+    mobileCap: `Mobile · start, review and published page`,
   },
   'primasa-camel': {
     cat: `Website`,
