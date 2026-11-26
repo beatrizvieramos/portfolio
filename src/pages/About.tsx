@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { site } from '../data/projects';
 import { SecHead, Spark, Arrow, asset, type Vars } from '../components/ui';
+import { FolderStage } from '../components/FolderStage';
 import { TypeWriter } from '../components/TypeWriter';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { useI18n, type Key } from '../i18n';
@@ -17,7 +18,7 @@ const Focus = ({ cls, n, title, body, chips, star }: { cls: string; n: number; t
   </div>
 );
 
-const interestColors = ['pink', 'mist', 'mist', 'ink', 'mist', 'mist', 'mist', 'green', 'pink-soft'];
+const interestColors = ['pink', 'mist', 'ink', 'mist', 'green', 'mist', 'pink-soft', 'mist', 'pink', 'ink'];
 const sticker = (left: number, top: number, bg: string, rot: number, delay: string, color?: string): React.CSSProperties => ({ left, top, background: bg, color, rotate: `${rot}deg`, animationDelay: delay });
 const pos = (left: number, top: number): Vars => ({ left, top });
 
@@ -32,7 +33,7 @@ export default function About() {
           <div className="facts">
             <span className="fact" style={{ background: 'var(--green-fill)', color: '#fff' }}>Aracaju · SE</span><span className="fact" style={{ background: 'var(--dsurf)', color: '#fff' }}>Product Designer</span>
             <span className="fact" style={{ background: 'var(--pink)' }}>Webdesigner</span><span className="fact" style={{ background: 'var(--mist)' }}>Front-end</span><span className="fact" style={{ background: 'var(--mist)' }}>{t('about.fact.ai')}</span></div></div>
-        <div className="collage" aria-hidden="true">
+        <div className="collage-wrap"><div className="collage" aria-hidden="true">
           <div className="blob" />
           <div className="polaroid"><img src={asset('img/me/foto.jpg')} alt="" /><b>biatriz ✦</b></div>
           <div className="arch2"><img src={asset('img/avatar/center.jpg')} alt="" /></div>
@@ -41,6 +42,7 @@ export default function About() {
           <span className="sticker" style={sticker(420, 660, 'var(--pink)', 4, '1.3s,1s')}>{t('about.sticker.since')}</span>
           <Spark c="pink" s={64} cls="spin" style={pos(300, 30)} /><Spark c="green" s={44} cls="spin-r" style={pos(590, 360)} /><Spark c="ink" s={28} cls="spin" style={pos(60, 10)} /><Spark c="pink" s={40} cls="spin-r" style={pos(10, 420)} />
         </div>
+          <p className="bubble">{t('about.bubble')}</p></div>
       </section>
 
       <div className="about-body">
@@ -78,6 +80,8 @@ export default function About() {
           <Card cls="acard--white" kicker={t('about.cert.3.k')} title={t('about.cert.3.t')} body={t('about.cert.3.d')} />
         </div></section>
 
+        <section className="fora"><SecHead label={t('about.out')} /><p className="fora__sub">{t('about.out.sub')}</p><FolderStage /></section>
+
         <section><SecHead label={t('about.brand')} /><div className="brandrow">
           <div className="stack">
             <p className="h4">{t('about.brand.lead')}</p>
@@ -93,12 +97,6 @@ export default function About() {
 
         <section><SecHead label={t('about.profile')} /><div className="words reveal">
           {(() => { const w = tl('about.profile.words'); return <><b>{w[0]}</b><Spark c="pink" s={48} cls="spin" /><b className="o">{w[1]}</b><Spark c="green" s={48} cls="spin-r" /><b className="g">{w[2]}</b><Spark c="ink" s={48} cls="spin" /><b className="o">{w[3]}</b><Spark c="pink" s={48} cls="spin-r" /></>; })()}
-        </div></section>
-
-        <section className="fora"><SecHead label={t('about.out')} /><div className="cards cards--3">
-          <div className="acard acard--pink fall"><span className="label">{t('about.out.1.k')}</span><h3 className="h3">{t('about.out.1.t')}</h3><Chips ink items={tl('about.out.1.chips')} /></div>
-          <div className="acard fall"><span className="label">{t('about.out.2.k')}</span><h3 className="h3">{t('about.out.2.t')}</h3><Chips ink items={tl('about.out.2.chips')} /></div>
-          <div className="acard fall" style={{ background: 'var(--pink)' }}><span className="label">{t('about.out.3.k')}</span><h3 className="h3">{t('about.out.3.t')}</h3><Chips ink items={tl('about.out.3.chips')} /></div>
         </div></section>
 
         <section className="about-cta"><TypeWriter text={t('about.type')} hi={t('about.typeHi')} />

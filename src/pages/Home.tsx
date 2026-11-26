@@ -255,7 +255,7 @@ export default function Home() {
           <div className="b b--stat reveal" style={{ background: 'var(--green-fill)', color: '#fff' }}><span className="h2">{t('bento.stat2.t')}</span><p>{t('bento.stat2')}</p></div>
           <div className="b b--stat reveal" style={{ background: 'var(--mist)' }}><span className="h2">IA</span><p>{t('bento.stat3')}</p></div>
           <div className="b b--list reveal"><span className="label">{t('bento.do.label')}</span><p>{t('bento.do.list')}</p></div>
-          <div className="b b--list b--list--pink reveal"><span className="label">{t('bento.brands.label')}</span><p>{'Alfama Web\nPrimasa Camel\nTerrah\nLa Lena FHV\nEntre Rios\nGerador de Criativos'}</p></div>
+          <div className="b b--list b--list--pink reveal"><span className="label">{t('bento.brands.label')}</span><p>{'Stanza\nEntre Rios\nAlphaville\nGSP Loteamentos\nRede Primavera\nCoesi'}</p></div>
         </div>
         <div className="more"><Link className="btn btn--dark" to="/sobre">{t('bento.more')} <Arrow d="ne" /></Link></div>
       </div></section>
