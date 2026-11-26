@@ -654,3 +654,5 @@ html[data-theme="dark"] .fab{border-color:var(--green)}
 html[data-theme="dark"] .phone{box-shadow:0 0 0 1px #3A3636}
 html[data-theme="dark"] .scene,html[data-theme="dark"] .browser,html[data-theme="dark"] .case-video{box-shadow:none}
 html[data-theme="dark"] .nav__links a:hover,html[data-theme="dark"] .nav__links a[aria-current]{color:var(--ink)}
+
+.filters--end{justify-content:flex-end}

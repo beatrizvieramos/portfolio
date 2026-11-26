@@ -7,7 +7,7 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { useI18n, type Key } from '../i18n';
 
 // grupos do sumário (a ordem segue o Figma v2.0); cada projeto cai em UM grupo (ver groupOf)
-const SUMMARY: readonly (readonly [string, Key])[] = [['sites', 'filter.sites'], ['produtos', 'filter.products'], ['ferramentas', 'filter.tools'], ['estudos', 'summary.studies']];
+const SUMMARY: readonly (readonly [string, Key])[] = [['all', 'filter.all'], ['sites', 'filter.sites'], ['produtos', 'filter.products'], ['ferramentas', 'filter.tools'], ['estudos', 'summary.studies']];
 const HEADERS: Record<string, readonly [Key, Key]> = {
   all: ['group.all.t', 'group.all.d'],
   sites: ['group.sites.t', 'group.sites.d'],
@@ -42,10 +42,8 @@ export default function Projects() {
             ))}
           </div>
         </div>
-        <div className="filters">
-          <div className="tabs" role="group" aria-label={t('filter.aria')}>
-            {FILTERS.map(([k, label]) => <button key={k} className="tab" aria-pressed={filter === k} onClick={() => setFilter(k)}>{t(label)}</button>)}
-          </div>
+        <div className="filters filters--end">
+          
           <Ext className="btn btn--outline" href={site.linkedin}>{t('common.contact')} <Arrow d="ne" /></Ext>
         </div>
         <div className="ghead" role="region" aria-live="polite" aria-atomic="true" aria-label={t('group.aria')}>
