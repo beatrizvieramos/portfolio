@@ -584,7 +584,11 @@ html[data-theme=dark] .themebtn__moon{opacity:0;transform:rotate(90deg) scale(.3
 .ghead__d{color:var(--gray);font-size:18px;margin:10px 0 0}
 @media (max-width:760px){
   .summary{padding:20px;border-radius:24px}
-  .summary__chips{gap:8px}.schip{padding:10px 16px;font-size:15px;gap:10px}
+  .summary{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:16px;overflow:hidden}
+  .summary__head,.summary__chips{min-width:0}
+  .summary__chips{gap:8px;flex-wrap:nowrap;overflow-x:auto;margin:0 -20px;padding:2px 20px;scroll-snap-type:x proximity;scroll-padding:0 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .summary__chips::-webkit-scrollbar{display:none}
+  .schip{flex:0 0 auto;scroll-snap-align:start;padding:10px 16px;font-size:15px;gap:10px;white-space:nowrap}
   .ghead__c{margin-left:0;width:100%}
 }
 
