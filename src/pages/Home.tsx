@@ -34,6 +34,16 @@ const ExpRows = ({ rows }: { rows: string[][] }) => {
   return <>{rows.map((r, i) => <div className="exp" key={i}><span>{tx(r[0])}</span><span className="h4">{r[1]}</span><span>{tx(r[2])}</span><span>{tx(r[3])}</span></div>)}</>;
 };
 
+const ToolsGrid = () => {
+  const { t } = useI18n();
+  return (
+    <div className="groups">{toolGroups.map(g => (
+      <div className={`group ${g.cls}`} key={g.name}><span className="label">{t(g.name)}</span>
+        <div className="tools">{g.tools.map(([n, icon]) => <div className="tool" key={n}>{icon}<span>{n}</span></div>)}</div></div>
+    ))}</div>
+  );
+};
+
 /** Letras separadas: cada uma reage ao mouse (onda no nome do hero). */
 const Letters = ({ text }: { text: string }) => <>{[...text].map((c, i) => <span className="ch" key={i}>{c}</span>)}</>;
 
@@ -241,11 +251,7 @@ export default function Home() {
 
       <section className="section" id="ferramentas"><div className="wrap">
         <SecTitle ghost={t('home.ghost.tools')} title={t('home.tools')} />
-        <div className="groups">{toolGroups.map(g => (
-          <div className={`group ${g.cls}`} key={g.name}><span className="label">{t(g.name)}</span>
-            <div className="tools">{g.tools.map(([n, icon]) => <div className="tool" key={n}>{icon}<span>{n}</span></div>)}</div></div>
-        ))}</div>
-      </div></section>
+        <ToolsGrid /></div></section>
 
       <section className="section" id="sobre"><div className="wrap">
         <SecTitle ghost={t('home.ghost.about')} title={t('home.about')} />
