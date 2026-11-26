@@ -348,4 +348,14 @@ export const projectsES: Record<string, ProjectI18n> = {
     role: [`Product Design`, `Front-end`],
     caps: [`Guía de uso`],
   },
+  'hacasa-personalize': {
+    cat: `Producto`,
+    lead: `Plataforma de personalización de unidades de HACASA: el cliente elige los kits de cada etapa de la obra o hace un proyecto con arquitecto, y la gestión sigue todo en un panel administrativo.`,
+    paras: [
+      `Del lado del cliente, el inicio de sesión lleva a la selección de la unidad y a los kits en dos etapas, Civil y Revestimientos, con la opción estándar ya marcada, resumen de valores y aprobación con plazo. Quien opta por el proyecto con arquitecto sigue la solicitud, los planos, los materiales, el presupuesto, la ejecución, las conversaciones y los documentos.`,
+      `El panel de gestión reúne vista general, seguimiento por unidad, lista maestra, cantidades, plazos y la integración con CV CRM. El archivo tiene un design system en verde y terracota, con tokens y biblioteca de componentes, en versión Desktop.`,
+    ],
+    role: [`UI Design`, `Product Design`, `Design System`, `Prototipado`],
+    caps: [`Cliente · Inicio de sesión, selección de la unidad y kits de la Etapa 01`, `Proyecto con arquitecto · Vista general, presupuesto y conversación`, `Gestión · Vista general, lista maestra e integración con CV CRM`],
+  },
 };

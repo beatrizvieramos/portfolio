@@ -349,4 +349,14 @@ export const projectsEN: Record<string, ProjectI18n> = {
     role: [`Product Design`, `Front-end`],
     caps: [`Usage guide`],
   },
+  'hacasa-personalize': {
+    cat: `Product`,
+    lead: `HACASA unit customization platform: the client chooses the kits for each stage of the build or works on a project with an architect, and management follows everything in an admin dashboard.`,
+    paras: [
+      `On the client side, login leads to unit selection and to kits in two stages, Civil and Finishes, with a default option already selected, a price summary and approval with a deadline. Whoever chooses the project with an architect follows the request, plans, materials, budget, execution, conversations and documents.`,
+      `The management dashboard brings together an overview, tracking by unit, a master list, quantities, deadlines and the CV CRM integration. The file has a green and terracotta design system, with tokens and a component library, in a Desktop version.`,
+    ],
+    role: [`UI Design`, `Product Design`, `Design System`, `Prototyping`],
+    caps: [`Client · Login, unit selection and Stage 01 kits`, `Architect project · Overview, budget and conversation`, `Management · Overview, master list and CV CRM integration`],
+  },
 };
