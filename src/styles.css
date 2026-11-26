@@ -90,7 +90,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* seções */
-.section{padding:120px 0}
+.section{padding:64px 0}
 .sec-title{position:relative;text-align:center;height:230px;margin-bottom:24px;overflow:hidden}
 .sec-title .ghost{position:absolute;left:50%;top:0;transform:translateX(-50%);font-weight:800;font-size:clamp(70px,13vw,210px);letter-spacing:-.04em;line-height:.95;color:var(--ghost);white-space:nowrap;user-select:none}
 .sec-title h2{position:absolute;left:0;right:0;top:88px}
@@ -170,7 +170,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .exp-gap{height:72px}
 
 /* contato / rodapé */
-.cta{text-align:center;padding:140px 0 100px}
+.cta{text-align:center;padding:96px 0 80px}
 .cta .big{font-weight:800;font-size:clamp(54px,9.4vw,150px);line-height:.95;letter-spacing:-.04em;margin:32px 0 48px}
 .cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .info3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;border-top:1.5px solid var(--line);margin-top:80px;padding-top:40px;text-align:left}
@@ -208,7 +208,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sticker{position:absolute;padding:12px 20px;border-radius:999px;font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;animation:pop .6s both,wobble 6s 1s ease-in-out infinite;z-index:3}
 @keyframes pop{from{scale:0}to{scale:1}} @keyframes wobble{50%{rotate:4deg}}
 .collage .spark{position:absolute}
-.about-body{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad) 96px;display:grid;gap:120px}
+.about-body{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad) 96px;display:grid;gap:80px}
 .cards{display:grid;gap:16px}.cards--4{grid-template-columns:repeat(4,1fr)}.cards--3{grid-template-columns:repeat(3,1fr)}.cards--2{grid-template-columns:1fr 1fr}
 .acard{border-radius:32px;padding:32px;background:var(--mist);display:flex;flex-direction:column;gap:14px}
 .acard .label{color:var(--green)} .acard p{color:var(--gray)}
@@ -410,7 +410,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ---- mobile: espaçamentos reduzidos ---- */
 @media (max-width:760px){
-  .section{padding:64px 0}
+  .section{padding:36px 0}
   .sec-title{height:112px;margin-bottom:8px}
   .sec-title h2{top:42px}
   .sec-head{margin-bottom:24px}
@@ -431,7 +431,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .about-hero{padding:96px var(--pad) 0;gap:24px}
   .about-hero h1{margin:20px 0}
   .about-hero .intro{font-size:18px;margin-bottom:20px}
-  .about-body{gap:56px;padding-bottom:56px}
+  .about-body{gap:44px;padding-bottom:56px}
   .about-cta{padding:48px 24px}
   .case-hero{padding:32px var(--pad) 16px}
   .case-meta{gap:20px;padding:16px var(--pad)}
