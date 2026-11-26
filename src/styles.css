@@ -524,3 +524,7 @@ html.has-star,html.has-star *{cursor:none!important}
   .footer__top .footer__logo img{width:118px}
   .footer__lang .lang__btn{min-width:44px;height:44px;padding:0 6px}
 }
+
+/* telas separadas dentro de um bloco: cada uma na própria moldura, com respiro */
+.browser-stack{display:grid;gap:48px}
+@media (max-width:760px){.browser-stack{gap:28px}}

@@ -39,7 +39,9 @@ export default function ProjectPage() {
       <section className="shots"><div className="sec-head" style={{ marginBottom: 0 }}><div className="h3"><span>/</span>{t('case.screens')}</div></div>
         {(c.desktop || []).map((g, gi) => (
           <figure className="reveal" key={g.cap}><figcaption className="label">{txt.caps[gi] || g.cap}</figcaption>
-            <div className="browser"><div className="browser__bar"><Dots /></div>{g.files.map(f => <img key={f} src={img(f)} alt={t('case.imgAlt', { title: p.title, cap: txt.caps[gi] || g.cap })} loading="lazy" />)}</div></figure>
+            {g.split
+              ? <div className="browser-stack">{g.files.map(f => <div className="browser" key={f}><div className="browser__bar"><Dots /></div><img key={f} src={img(f)} alt={t('case.imgAlt', { title: p.title, cap: txt.caps[gi] || g.cap })} loading="lazy" /></div>)}</div>
+              : <div className="browser"><div className="browser__bar"><Dots /></div>{g.files.map(f => <img key={f} src={img(f)} alt={t('case.imgAlt', { title: p.title, cap: txt.caps[gi] || g.cap })} loading="lazy" />)}</div>}</figure>
         ))}
         {c.mobile && c.mobile.length > 0 && (
           <figure className="reveal"><figcaption className="label">{txt.mobileCap || t('case.mobile')}</figcaption>
