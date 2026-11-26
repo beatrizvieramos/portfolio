@@ -3,6 +3,7 @@ import { site } from '../data/projects';
 import { SecHead, Spark, Arrow, asset, type Vars } from '../components/ui';
 import { TypeWriter } from '../components/TypeWriter';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { useI18n, type Key } from '../i18n';
 
 const Chips = ({ items, ink }: { items: string[]; ink?: boolean }) => <div className="chips">{items.map(c => <span className={`chip${ink ? ' chip--ink' : ''}`} key={c}>{c}</span>)}</div>;
 const Card = ({ cls = '', kicker, title, body, style }: { cls?: string; kicker?: string; title: ReactNode; body?: string; style?: React.CSSProperties }) => (
@@ -16,96 +17,96 @@ const Focus = ({ cls, n, title, body, chips, star }: { cls: string; n: number; t
   </div>
 );
 
-const interests: [string, string][] = [['IA aplicada ao design', 'pink'], ['Design systems para IA', 'mist'], ['Documentação para IA', 'mist'], ['Product Design', 'ink'], ['UX Research', 'mist'], ['Acessibilidade', 'mist'], ['Performance', 'mist'], ['Componentização', 'green'], ['Aprendizado contínuo', 'pink-soft']];
-const skills = ['Pensamento estratégico', 'Resolução de problemas', 'Comunicação eficaz', 'Colaboração multidisciplinar', 'Gestão de tempo', 'Adaptabilidade', 'Aprendizado contínuo', 'Organização e documentação de processos'];
+const interestColors = ['pink', 'mist', 'mist', 'ink', 'mist', 'mist', 'mist', 'green', 'pink-soft'];
 const sticker = (left: number, top: number, bg: string, rot: number, delay: string, color?: string): React.CSSProperties => ({ left, top, background: bg, color, rotate: `${rot}deg`, animationDelay: delay });
 const pos = (left: number, top: number): Vars => ({ left, top });
 
 export default function About() {
-  useDocumentTitle('Sobre mim | Beatriz Vieira Ramos', 'Conheça Beatriz Vieira Ramos: história, foco profissional, interesses, marca e o que ela faz fora das telas.');
+  const { t, tl } = useI18n();
+  useDocumentTitle(t('about.metaTitle'), t('about.desc'));
   return (
     <main>
       <section className="about-hero">
-        <div><span className="label g">↳  Sobre mim</span><h1 className="h1">Oi, eu sou a <span className="g">Beatriz.</span></h1>
-          <p className="intro">Product Designer de Aracaju, Sergipe. Junto interface, design systems e front-end para criar produtos digitais claros, responsivos e centrados nas pessoas, e sigo curiosa para aprender, testar e melhorar tudo o que faço.</p>
+        <div><span className="label g">{t('about.kicker')}</span><h1 className="h1">{t('about.h1a')}<span className="g">{t('about.h1b')}</span></h1>
+          <p className="intro">{t('about.intro')}</p>
           <div className="facts">
             <span className="fact" style={{ background: 'var(--green)', color: '#fff' }}>Aracaju · SE</span><span className="fact" style={{ background: 'var(--ink)', color: '#fff' }}>Product Designer</span>
-            <span className="fact" style={{ background: 'var(--pink)' }}>Webdesigner</span><span className="fact" style={{ background: 'var(--mist)' }}>Front-end</span><span className="fact" style={{ background: 'var(--mist)' }}>IA aplicada ao design</span></div></div>
+            <span className="fact" style={{ background: 'var(--pink)' }}>Webdesigner</span><span className="fact" style={{ background: 'var(--mist)' }}>Front-end</span><span className="fact" style={{ background: 'var(--mist)' }}>{t('about.fact.ai')}</span></div></div>
         <div className="collage" aria-hidden="true">
           <div className="blob" />
           <div className="polaroid"><img src={asset('img/me/foto.jpg')} alt="" /><b>biatriz ✦</b></div>
           <div className="arch2"><img src={asset('img/avatar/center.jpg')} alt="" /></div>
           <span className="sticker" style={sticker(400, 70, 'var(--green)', 6, '.9s,1s', '#fff')}>Aracaju, SE</span>
           <span className="sticker" style={sticker(30, 640, 'var(--ink)', -5, '1.1s,1s', '#fff')}>Product Designer ✦</span>
-          <span className="sticker" style={sticker(420, 660, 'var(--pink)', 4, '1.3s,1s')}>Desde 2015</span>
+          <span className="sticker" style={sticker(420, 660, 'var(--pink)', 4, '1.3s,1s')}>{t('about.sticker.since')}</span>
           <Spark c="pink" s={64} cls="spin" style={pos(300, 30)} /><Spark c="green" s={44} cls="spin-r" style={pos(590, 360)} /><Spark c="ink" s={28} cls="spin" style={pos(60, 10)} /><Spark c="pink" s={40} cls="spin-r" style={pos(10, 420)} />
         </div>
       </section>
 
       <div className="about-body">
-        <section><SecHead label="Minha história" /><div className="cards cards--4 reveal">
-          <Card kicker="2011 — 2015" title="Design Gráfico" body="Bacharelado em Design Gráfico na Universidade Tiradentes (UNIT), em Aracaju." />
-          <Card cls="acard--pink" kicker="2015" title="Primeiros sites" body="Comecei na área digital na Alfama Web, criando, atualizando e mantendo websites para diferentes marcas." />
-          <Card kicker="2021 — 2024" title="Design + front-end" body="Na Agência Acerte, uni design e desenvolvimento em sites, landing pages e produtos digitais, do conceito à entrega." />
-          <Card cls="acard--pink" kicker="2024 — hoje" title="UI Designer & Front-end" body="De volta à Alfama Web, atuo com produtos digitais, design systems, protótipos e interfaces responsivas." />
+        <section><SecHead label={t('about.story')} /><div className="cards cards--4 reveal">
+          <Card kicker="2011 — 2015" title={t('about.story.1.t')} body={t('about.story.1.d')} />
+          <Card cls="acard--pink" kicker="2015" title={t('about.story.2.t')} body={t('about.story.2.d')} />
+          <Card kicker={t('about.story.3.k')} title={t('about.story.3.t')} body={t('about.story.3.d')} />
+          <Card cls="acard--pink" kicker={t('about.story.4.k')} title="UI Designer & Front-end" body={t('about.story.4.d')} />
         </div></section>
 
-        <section><SecHead label="Meu foco profissional" /><div className="cards cards--2" style={{ marginBottom: 16 }}>
-          <Focus cls="ink" n={1} title="Product Design & UX" body="Do problema à solução: pesquisa, arquitetura da informação, wireframes, prototipação e testes de usabilidade para decidir com clareza." chips={['Pesquisa', 'Arquitetura da informação', 'Wireframes', 'Prototipação', 'Testes de usabilidade']} star="pink" />
-          <Focus cls="pink" n={2} title="Interface & Visual Design" body="Interfaces web e mobile responsivas, com hierarquia visual, tipografia e componentização pensadas para o uso real." chips={['Web & Mobile', 'Design responsivo', 'Auto Layout', 'Componentização', 'Tipografia']} star="ink" />
+        <section><SecHead label={t('about.focus')} /><div className="cards cards--2" style={{ marginBottom: 16 }}>
+          <Focus cls="ink" n={1} title="Product Design & UX" body={t('about.focus.1.d')} chips={tl('about.focus.1.chips')} star="pink" />
+          <Focus cls="pink" n={2} title="Interface & Visual Design" body={t('about.focus.2.d')} chips={tl('about.focus.2.chips')} star="ink" />
         </div><div className="cards cards--3">
-          <Focus cls="mist" n={3} title="Design Systems" body="Bibliotecas de componentes, tokens e documentação, inclusive legível por IA." chips={['Tokens', 'Componentes', 'Documentação']} star="green" />
-          <Focus cls="green" n={4} title="Front-end" body="Levo o design até o ar com código limpo, responsivo e fiel ao layout." chips={['HTML5', 'CSS3', 'Sass', 'JavaScript', 'Bootstrap', 'Rails (básico)']} star="pink" />
-          <Focus cls="soft" n={5} title="IA aplicada ao design" body="IA para otimizar processos, documentação e componentização, com mais qualidade nas entregas." chips={['Processos', 'Documentação', 'Componentização']} star="ink" />
+          <Focus cls="mist" n={3} title="Design Systems" body={t('about.focus.3.d')} chips={tl('about.focus.3.chips')} star="green" />
+          <Focus cls="green" n={4} title="Front-end" body={t('about.focus.4.d')} chips={tl('about.focus.4.chips')} star="pink" />
+          <Focus cls="soft" n={5} title={t('about.focus.5.t')} body={t('about.focus.5.d')} chips={tl('about.focus.5.chips')} star="ink" />
         </div></section>
 
-        <section><SecHead label="Interesses" /><div className="interests reveal">
-          {interests.map(([t, c], i) => <span className="interest" key={t} style={{ '--n': i, background: `var(--${c})`, color: c === 'ink' || c === 'green' ? '#fff' : undefined } as Vars}>{t}</span>)}
+        <section><SecHead label={t('about.interests')} /><div className="interests reveal">
+          {tl('about.interests.list').map((x, i) => { const c = interestColors[i]; return <span className="interest" key={x} style={{ '--n': i, background: `var(--${c})`, color: c === 'ink' || c === 'green' ? '#fff' : undefined } as Vars}>{x}</span>; })}
         </div></section>
 
-        <section><SecHead label="Como eu trabalho" /><div className="skills reveal">
-          {skills.map((t, i) => <div className="skill" key={t}><Spark c="green" s={26} cls="blink" style={{ '--i': i } as Vars} /><span>{t}</span></div>)}
+        <section><SecHead label={t('about.how')} /><div className="skills reveal">
+          {tl('about.how.list').map((x, i) => <div className="skill" key={x}><Spark c="green" s={26} cls="blink" style={{ '--i': i } as Vars} /><span>{x}</span></div>)}
         </div></section>
 
-        <section><SecHead label="Formação & idiomas" /><div className="cards cards--3 reveal">
-          <Card kicker="Graduação" title="Design Gráfico — UNIT" body="Universidade Tiradentes, 2011 – 2015." />
-          <Card cls="acard--pink" kicker="Pós-graduação" title="UX/UI e Produtos Digitais — EBAC" body="Em andamento." />
-          <Card kicker="Idiomas" title="Português · Inglês · Espanhol" body="Português nativo; inglês e espanhol intermediários." />
+        <section><SecHead label={t('about.edu')} /><div className="cards cards--3 reveal">
+          <Card kicker={t('about.edu.grad.k')} title={t('about.edu.grad.t')} body={t('about.edu.grad.d')} />
+          <Card cls="acard--pink" kicker={t('about.edu.post.k')} title={t('about.edu.post.t')} body={t('about.edu.post.d')} />
+          <Card kicker={t('about.edu.lang.k')} title={t('about.edu.lang.t')} body={t('about.edu.lang.d')} />
         </div><div className="cards cards--3 reveal" style={{ marginTop: 16 }}>
-          <Card cls="acard--white" kicker="Certificações · UX e Product Design" title="UX Design, UX/UI na Prática, Oficina de Usabilidade, UX Research" body="EBAC, Samsung Ocean e Alura." />
-          <Card cls="acard--white" kicker="Certificações · Design Systems e IA" title="DS legíveis por IA · IA, UI e Design System" body="Clube de UI e DesignBoost." />
-          <Card cls="acard--white" kicker="Certificações · IA e Produto" title="Imersão Claude para Product Managers" body="TERA, 2026." />
+          <Card cls="acard--white" kicker={t('about.cert.1.k')} title={t('about.cert.1.t')} body={t('about.cert.1.d')} />
+          <Card cls="acard--white" kicker={t('about.cert.2.k')} title={t('about.cert.2.t')} body={t('about.cert.2.d')} />
+          <Card cls="acard--white" kicker={t('about.cert.3.k')} title={t('about.cert.3.t')} body={t('about.cert.3.d')} />
         </div></section>
 
-        <section><SecHead label="Minha marca" /><div className="brandrow">
+        <section><SecHead label={t('about.brand')} /><div className="brandrow">
           <div className="stack">
-            <p className="h4">biatriz é a identidade visual do meu portfólio: logotipo, paleta e padrão gráfico que unem estética e funcionalidade.</p>
-            <p className="lead muted">O projeto nasceu da busca por combinar estética e funcionalidade, com foco em entender o público e os objetivos de cada cliente. Foi publicado no Behance em fevereiro de 2024.</p>
-            <div><span className="label muted">Campos de criação</span><div style={{ marginTop: 12 }}><Chips items={['Design de logotipo', 'Branding', 'Design gráfico', 'UI/UX']} /></div></div>
-            <div><span className="label muted">Ferramentas</span><div style={{ marginTop: 12 }}><Chips items={['Illustrator', 'Photoshop', 'InDesign']} /></div></div>
-            <div><span className="label muted">Paleta</span><div className="swatches" style={{ marginTop: 12 }}>
-              {[['#296246', 'Verde'], ['#FFBBD9', 'Rosa'], ['#FAEFEC', 'Creme']].map(([hex, n]) => <div className="swatch" key={hex}><i style={{ background: hex }} /><span className="label">{n} · {hex}</span></div>)}</div></div>
-            <div><a className="btn btn--dark" href={site.behanceBrand} target="_blank" rel="noopener">Ver no Behance <Arrow d="ne" /></a></div>
+            <p className="h4">{t('about.brand.lead')}</p>
+            <p className="lead muted">{t('about.brand.text')}</p>
+            <div><span className="label muted">{t('about.brand.fields')}</span><div style={{ marginTop: 12 }}><Chips items={tl('about.brand.fields.list')} /></div></div>
+            <div><span className="label muted">{t('about.brand.tools')}</span><div style={{ marginTop: 12 }}><Chips items={['Illustrator', 'Photoshop', 'InDesign']} /></div></div>
+            <div><span className="label muted">{t('about.brand.palette')}</span><div className="swatches" style={{ marginTop: 12 }}>
+              {([['#296246', 'about.brand.green'], ['#FFBBD9', 'about.brand.pink'], ['#FAEFEC', 'about.brand.cream']] as [string, Key][]).map(([hex, n]) => <div className="swatch" key={hex}><i style={{ background: hex }} /><span className="label">{t(n)} · {hex}</span></div>)}</div></div>
+            <div><a className="btn btn--dark" href={site.behanceBrand} target="_blank" rel="noopener">{t('about.brand.btn')} <Arrow d="ne" /></a></div>
           </div>
-          <div className="brandimgs reveal"><img src={asset('img/brand/logo-verde.jpg')} alt="Logotipo biatriz em verde" loading="lazy" /><img src={asset('img/brand/logo-rosa.jpg')} alt="Logotipo biatriz em rosa" loading="lazy" /><img className="wide" src={asset('img/brand/padrao.jpg')} alt="Padrão gráfico da marca" loading="lazy" /></div>
+          <div className="brandimgs reveal"><img src={asset('img/brand/logo-verde.jpg')} alt={t('about.brand.alt1')} loading="lazy" /><img src={asset('img/brand/logo-rosa.jpg')} alt={t('about.brand.alt2')} loading="lazy" /><img className="wide" src={asset('img/brand/padrao.jpg')} alt={t('about.brand.alt3')} loading="lazy" /></div>
         </div></section>
 
-        <section><SecHead label="Perfil" /><div className="words reveal">
-          <b>Criativa.</b><Spark c="pink" s={48} cls="spin" /><b className="o">Curiosa.</b><Spark c="green" s={48} cls="spin-r" /><b className="g">Observadora.</b><Spark c="ink" s={48} cls="spin" /><b className="o">Interessada.</b><Spark c="pink" s={48} cls="spin-r" />
+        <section><SecHead label={t('about.profile')} /><div className="words reveal">
+          {(() => { const w = tl('about.profile.words'); return <><b>{w[0]}</b><Spark c="pink" s={48} cls="spin" /><b className="o">{w[1]}</b><Spark c="green" s={48} cls="spin-r" /><b className="g">{w[2]}</b><Spark c="ink" s={48} cls="spin" /><b className="o">{w[3]}</b><Spark c="pink" s={48} cls="spin-r" /></>; })()}
         </div></section>
 
-        <section className="fora"><SecHead label="Fora das telas" /><div className="cards cards--3">
-          <div className="acard acard--pink fall"><span className="label">Hobbies</span><h3 className="h3">Livros, filmes, séries, animes e mangás.</h3><Chips ink items={['Livros', 'Filmes', 'Séries', 'Animes', 'Mangás']} /></div>
-          <div className="acard fall"><span className="label">Gosto musical</span><h3 className="h3">Rock e pop, com Pink Floyd, Guns N’ Roses e a-ha na trilha.</h3><Chips ink items={['Rock', 'Pop', 'Pink Floyd', 'Guns N’ Roses', 'a-ha']} /></div>
-          <div className="acard fall" style={{ background: 'var(--pink)' }}><span className="label">Curiosidades</span><h3 className="h3">Cultura pop, tecnologia, inteligência artificial, estética e comportamento humano.</h3><Chips ink items={['Cultura pop', 'Tecnologia', 'Inteligência artificial', 'Estética', 'Comportamento humano']} /></div>
+        <section className="fora"><SecHead label={t('about.out')} /><div className="cards cards--3">
+          <div className="acard acard--pink fall"><span className="label">{t('about.out.1.k')}</span><h3 className="h3">{t('about.out.1.t')}</h3><Chips ink items={tl('about.out.1.chips')} /></div>
+          <div className="acard fall"><span className="label">{t('about.out.2.k')}</span><h3 className="h3">{t('about.out.2.t')}</h3><Chips ink items={tl('about.out.2.chips')} /></div>
+          <div className="acard fall" style={{ background: 'var(--pink)' }}><span className="label">{t('about.out.3.k')}</span><h3 className="h3">{t('about.out.3.t')}</h3><Chips ink items={tl('about.out.3.chips')} /></div>
         </div></section>
 
-        <section className="about-cta"><TypeWriter text="Bora conversar?" hi="conversar" />
+        <section className="about-cta"><TypeWriter text={t('about.type')} hi={t('about.typeHi')} />
           <div className="btns">
             <a className="btn btn--pink" href={site.whatsapp} target="_blank" rel="noopener">WhatsApp <Arrow d="ne" /></a>
             <a className="btn btn--light" href={site.linkedin} target="_blank" rel="noopener">LinkedIn <Arrow d="ne" /></a>
             <a className="btn btn--light" href={site.behance} target="_blank" rel="noopener">Behance <Arrow d="ne" /></a>
-            <a className="btn btn--light" href={`mailto:${site.email}`}>E-mail <Arrow d="ne" /></a></div></section>
+            <a className="btn btn--light" href={`mailto:${site.email}`}>{t('common.email')} <Arrow d="ne" /></a></div></section>
       </div>
     </main>
   );

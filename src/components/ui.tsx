@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { Project } from '../data/projects';
+import { useI18n } from '../i18n';
 
 export type Vars = CSSProperties & { [k: `--${string}`]: string | number };
 
@@ -44,8 +45,9 @@ export function Scene({ p }: { p: Project }) {
   );
 }
 
-const WORDS = ['Product Design', 'Front-end', 'Webdesigner', 'Design Systems', 'IA aplicada ao Design'];
 export function Band({ rev }: { rev?: boolean }) {
+  const { t } = useI18n();
+  const WORDS = ['Product Design', 'Front-end', 'Webdesigner', 'Design Systems', t('band.ai')];
   return (
     <div className={`band${rev ? ' band--rev' : ''}`} aria-hidden="true">
       <div className="band__track">

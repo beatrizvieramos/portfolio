@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { site } from '../data/projects';
 import { GradStar, asset, Arrow } from './ui';
+import { LangSwitch } from './LangSwitch';
+import { useI18n } from '../i18n';
 
 const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function Nav() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
   const [active, setActive] = useState('');
@@ -30,22 +33,27 @@ function Nav() {
   const cur = (k: string) => (active === k ? { 'aria-current': 'true' as const } : {});
   return (
     <header className={`nav${open ? ' open' : ''}`} id="top">
-      <Link className="nav__logo" to="/" aria-label="biatriz — início" onClick={close}><img src={asset('img/logo/biatriz-verde.svg')} alt="Beatriz Vieira" width={139} height={34} /></Link>
-      <nav className="nav__links" aria-label="Principal">
-        <Link to="/projetos" onClick={close} {...cur('projetos')}>Projetos</Link>
-        <Link to={to('servicos')} onClick={close} {...cur('servicos')}>Serviços</Link>
-        <Link to={to('ferramentas')} onClick={close} {...cur('ferramentas')}>Ferramentas</Link>
-        <Link to="/sobre" onClick={close} {...cur('sobre-page')}>Sobre</Link>
-        <Link to={to('experiencia')} onClick={close} {...cur('experiencia')}>Experiência</Link>
-        <Link to={to('contato')} onClick={close} {...cur('contato')}>Contato</Link>
+      <Link className="nav__logo" to="/" aria-label={t('nav.home')} onClick={close}><img src={asset('img/logo/biatriz-verde.svg')} alt="Beatriz Vieira" width={139} height={34} /></Link>
+      <nav className="nav__links" aria-label={t('nav.aria')}>
+        <Link to="/projetos" onClick={close} {...cur('projetos')}>{t('nav.projects')}</Link>
+        <Link to={to('servicos')} onClick={close} {...cur('servicos')}>{t('nav.services')}</Link>
+        <Link to={to('ferramentas')} onClick={close} {...cur('ferramentas')}>{t('nav.tools')}</Link>
+        <Link to="/sobre" onClick={close} {...cur('sobre-page')}>{t('nav.about')}</Link>
+        <Link to={to('experiencia')} onClick={close} {...cur('experiencia')}>{t('nav.experience')}</Link>
+        <Link to={to('contato')} onClick={close} {...cur('contato')}>{t('nav.contact')}</Link>
+        <div className="nav__lang"><span className="label">{t('lang.label')}</span><LangSwitch /></div>
       </nav>
-      <Link className="btn btn--dark nav__cta" to={to('contato')} onClick={close}>Vamos conversar <Arrow d="ne" /></Link>
-      <button className="nav__burger" aria-label="Abrir menu" aria-expanded={open} onClick={() => setOpen(o => !o)}><span /><span /></button>
+      <div className="nav__end">
+        <LangSwitch className="nav__langbar" />
+        <Link className="btn btn--dark nav__cta" to={to('contato')} onClick={close}>{t('nav.cta')} <Arrow d="ne" /></Link>
+        <button className="nav__burger" aria-label={open ? t('nav.close') : t('nav.open')} aria-expanded={open} onClick={() => setOpen(o => !o)}><span /><span /></button>
+      </div>
     </header>
   );
 }
 
 function Footer() {
+  const { t } = useI18n();
   const to = (id: string) => ({ pathname: '/', hash: `#${id}` });
   const letters = [...'beatriz vieira'];
   return (
@@ -54,18 +62,18 @@ function Footer() {
       <i className="fstar spin-r" style={{ left: '42%', top: '-6%', width: 120 }}><GradStar id="g2" /></i>
       <Link className="footer__logo" to="/" aria-label="biatriz"><img src={asset('img/logo/biatriz-rosa.svg')} alt="biatriz" width={240} height={59} /></Link>
       <div className="fgrid">
-        <div><span className="label">Páginas</span>
-          <Link to="/">Home</Link><Link to="/projetos">Projetos</Link><Link to={to('servicos')}>Serviços</Link><Link to={to('ferramentas')}>Ferramentas</Link><Link to="/sobre">Sobre</Link><Link to={to('experiencia')}>Experiência</Link><Link to={to('contato')}>Contato</Link></div>
-        <div><span className="label">Social</span>
+        <div><span className="label">{t('foot.pages')}</span>
+          <Link to="/">{t('foot.home')}</Link><Link to="/projetos">{t('nav.projects')}</Link><Link to={to('servicos')}>{t('nav.services')}</Link><Link to={to('ferramentas')}>{t('nav.tools')}</Link><Link to="/sobre">{t('nav.about')}</Link><Link to={to('experiencia')}>{t('nav.experience')}</Link><Link to={to('contato')}>{t('nav.contact')}</Link></div>
+        <div><span className="label">{t('foot.social')}</span>
           <a href={site.behance} target="_blank" rel="noopener">Behance <Arrow d="ne" /></a><a href={site.linkedin} target="_blank" rel="noopener">LinkedIn <Arrow d="ne" /></a><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp <Arrow d="ne" /></a></div>
-        <div><span className="label">Contato</span>
+        <div><span className="label">{t('foot.contact')}</span>
           <a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">{site.phone}</a></div>
-        <div><span className="label">Estúdio</span><p>Baseada em Aracaju, Brasil</p><p>Disponível remotamente</p></div>
+        <div><span className="label">{t('foot.studio')}</span><p>{t('foot.based')}</p><p>{t('foot.remote')}</p></div>
       </div>
       <div className="fname" aria-label="beatriz vieira">
         {letters.map((ch, i) => (ch === ' ' ? <span className="sp" aria-hidden="true" key={i} /> : <span aria-hidden="true" key={i}>{ch}</span>))}
       </div>
-      <div className="fbar"><span>© 2026 Beatriz Vieira Ramos</span><a href="#top" onClick={e => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); }}>Voltar ao topo <Arrow d="up" /></a></div>
+      <div className="fbar"><span>{t('foot.copy')}</span><LangSwitch variant="dark" className="fbar__lang" /><a href="#top" onClick={e => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); }}>{t('foot.top')} <Arrow d="up" /></a></div>
     </footer>
   );
 }
@@ -152,10 +160,9 @@ function StarCursor() {
   );
 }
 
-const WA_URL = 'https://wa.me/5579991378686?text=Ol%C3%A1%2C%20quero%20fazer%20um%20or%C3%A7amento%20%E2%9C%A6';
-
 /** Botão flutuante discreto: estrela da marca; ao passar o mouse mostra "Entre em contato" e abre o WhatsApp. */
 function WhatsAppFab() {
+  const { t, wa } = useI18n();
   const { pathname } = useLocation();
   const [hide, setHide] = useState(false);
 
@@ -173,9 +180,9 @@ function WhatsAppFab() {
   }, [pathname]);
 
   return (
-    <a className={`fab${hide ? ' is-hidden' : ''}`} href={WA_URL} target="_blank" rel="noopener noreferrer" aria-label="Entre em contato pelo WhatsApp" tabIndex={hide ? -1 : 0}>
+    <a className={`fab${hide ? ' is-hidden' : ''}`} href={wa} target="_blank" rel="noopener noreferrer" aria-label={t('fab.aria')} tabIndex={hide ? -1 : 0}>
       <svg className="fab__star" viewBox="0 0 32 32" aria-hidden="true"><path d={CURSOR_STAR} fill="#2B6349" /></svg>
-      <span className="fab__label">Entre em contato</span>
+      <span className="fab__label">{t('fab.label')}</span>
     </a>
   );
 }
