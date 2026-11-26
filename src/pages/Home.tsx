@@ -46,9 +46,10 @@ const ToolsGrid = () => {
       if (paused.current) return;
       const card = el.querySelector('.group') as HTMLElement | null;
       if (!card) return;
-      const step = card.offsetWidth + 16;
+      const w = card.offsetWidth + 16;
+      const step = Math.max(1, Math.floor((el.clientWidth + 16) / w + 0.05)) * w; // avança uma "página": 3 no desktop, 2 no tablet, 1 no celular
       const max = el.scrollWidth - el.clientWidth;
-      el.scrollTo({ left: el.scrollLeft + step > max + 4 ? 0 : el.scrollLeft + step, behavior: 'smooth' });
+      el.scrollTo({ left: el.scrollLeft >= max - 4 ? 0 : Math.min(el.scrollLeft + step, max), behavior: 'smooth' });
     }, 3200);
     return () => window.clearInterval(id);
   }, []);
