@@ -22,7 +22,7 @@ const toolGroups: { name: Key; cls: string; tools: [string, React.ReactNode][] }
   { name: 'tools.design', cls: '', tools: [['Figma', <Tl f="figma-color" />], ['FigJam', <Ico bg="#0D0D0D" fg="#fff" t="Fj" />], ['Photoshop', <Ico bg="#001E36" fg="#31A8FF" t="Ps" />], ['Illustrator', <Ico bg="#330000" fg="#FF9A00" t="Ai" />]] },
   { name: 'tools.mgmt', cls: 'group--pink', tools: [['Jira', <Ico bg="#0052CC" fg="#fff" t="Ji" />], ['Asana', <Ico bg="#F06A6A" fg="#fff" t="As" />], ['Notion', <Tl f="notion" />], ['Trello', <Tl f="trello" />]] },
   { name: 'tools.ai', cls: '', tools: [['Claude', <Tl f="claude" />], ['Gemini', <Ico bg="#fff" fg="#4285F4" t="✦" />], ['ChatGPT', <Tl f="chatgpt" />], ['Lovable', <Ico bg="#FF4D8D" fg="#fff" t="♥" />]] },
-  { name: 'tools.dev', cls: '', tools: [['HTML5', <Tl f="html5" />], ['CSS3', <Tl f="css" />], ['Sass', <Tl f="sass" />], ['JavaScript', <Tl f="javascript" />], ['Bootstrap', <Tl f="bootstrap" />], ['React (básico)', <Ico bg="#20232A" fg="#61DAFB" t="⚛" />]] },
+  { name: 'tools.dev', cls: '', tools: [['HTML5', <Tl f="html5" />], ['CSS3', <Tl f="css" />], ['JavaScript', <Tl f="javascript" />], ['Bootstrap', <Tl f="bootstrap" />]] },
 ];
 
 // período/curso: texto fixo ou chave do dicionário (marcada com "@"); empresas, instituições e cidades não são traduzidas
