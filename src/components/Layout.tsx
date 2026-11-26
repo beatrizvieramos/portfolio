@@ -72,7 +72,7 @@ function Footer() {
         <div><span className="label">{t('foot.social')}</span>
           <a href={site.behance} target="_blank" rel="noopener">Behance <Arrow d="ne" /></a><a href={site.linkedin} target="_blank" rel="noopener">LinkedIn <Arrow d="ne" /></a><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp <Arrow d="ne" /></a></div>
         <div><span className="label">{t('foot.contact')}</span>
-          <a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">{site.phone}</a></div>
+          <a href={`mailto:${site.email}`}>{site.email}</a><a href={site.whatsapp} target="_blank" rel="noopener">{site.phone}</a><a href={asset('curriculo-beatriz.pdf')} download>{t('hero.cv')} <Arrow d="down" /></a></div>
         <div><span className="label">{t('foot.studio')}</span><p>{t('foot.based')}</p><p>{t('foot.remote')}</p></div>
       </div>
       <div className="fname" aria-label="beatriz vieira">

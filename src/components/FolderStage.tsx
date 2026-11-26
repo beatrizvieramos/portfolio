@@ -76,7 +76,7 @@ export function FolderStage() {
   const sheet = mobile && open !== null;
 
   return (
-    <div className="fstage" data-open={open !== null ? '' : undefined} role="group" aria-label={t('about.out.stage')}>
+    <div className="fstage" data-open={open !== null ? '' : undefined} role="group" aria-label={t('about.out.stage')} onClick={e => { if (sheet && e.target === e.currentTarget) close(); }}>
       {DECOR.map(([c, s, x, y, cls], i) => <Spark key={i} c={c} s={s} cls={`fdecor ${cls}`} style={{ left: `${x}%`, top: `${y}%`, '--i': i } as Vars} />)}
       <ul className="flist">
         {FOLDERS.map(f => {
